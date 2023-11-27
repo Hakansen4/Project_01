@@ -1,0 +1,388 @@
+fileFormatVersion: 2
+guid: 02c2abab08534dd45b8c69c1312c6c9f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: player katana continuous attack 80x64_Frame_0
+    originalName: 
+    pivot: {x: 0.3148148, y: -0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 88
+      width: 54
+      height: 24
+    spriteID: 96437d69bf38eaa42a298c9e1865b355
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 88}
+  - name: player katana continuous attack 80x64_Frame_1
+    originalName: 
+    pivot: {x: 0.35185185, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 48
+      width: 54
+      height: 32
+    spriteID: 305056946ed081a4d8d66efdf4647729
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 48}
+  - name: player katana continuous attack 80x64_Frame_2
+    originalName: 
+    pivot: {x: 0.54285717, y: -0.53333336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 71
+      y: 4
+      width: 35
+      height: 30
+    spriteID: 659578d62aa439943b2ad5ebb363ece3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 71, y: 4}
+  - name: player katana continuous attack 80x64_Frame_3
+    originalName: 
+    pivot: {x: 0.54285717, y: -0.53333336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 120
+      width: 35
+      height: 30
+    spriteID: 133034ba06615a54b9c640b0447e5cf5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 120}
+  - name: player katana continuous attack 80x64_Frame_4
+    originalName: 
+    pivot: {x: 0.33333334, y: -0.53333336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 48
+      width: 57
+      height: 30
+    spriteID: a3d51fa05dc458a459c6e6b6c844967c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 48}
+  - name: player katana continuous attack 80x64_Frame_5
+    originalName: 
+    pivot: {x: 0.37288138, y: -0.44444445}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 59
+      height: 36
+    spriteID: 695c4b68a70784f43821360f7b31af6e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: player katana continuous attack 80x64_Frame_6
+    originalName: 
+    pivot: {x: 0.7894737, y: -0.43243244}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 158
+      width: 19
+      height: 37
+    spriteID: a168147cc26d67349940b89b8e71698f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 158}
+  - name: player katana continuous attack 80x64_Frame_7
+    originalName: 
+    pivot: {x: 0.7894737, y: -0.43243244}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 203
+      width: 19
+      height: 37
+    spriteID: e97bc88acc6a1014193125ba6ccceca0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 203}
+  - name: player katana continuous attack 80x64_Frame_8
+    originalName: 
+    pivot: {x: 0.73684216, y: -0.44444445}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 158
+      width: 19
+      height: 36
+    spriteID: a3efb38c1147a154db0da4d5343159d9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 158}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 847778416
+    name: player katana continuous attack 80x64
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: player katana continuous attack 80x64_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 23
+        y: 16
+        width: 54
+        height: 24
+      spriteId: 96437d69bf38eaa42a298c9e1865b355
+    - name: player katana continuous attack 80x64_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 21
+        y: 16
+        width: 54
+        height: 32
+      spriteId: 305056946ed081a4d8d66efdf4647729
+    - name: player katana continuous attack 80x64_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 21
+        y: 16
+        width: 35
+        height: 30
+      spriteId: 659578d62aa439943b2ad5ebb363ece3
+    - name: player katana continuous attack 80x64_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 21
+        y: 16
+        width: 35
+        height: 30
+      spriteId: 133034ba06615a54b9c640b0447e5cf5
+    - name: player katana continuous attack 80x64_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 21
+        y: 16
+        width: 57
+        height: 30
+      spriteId: a3d51fa05dc458a459c6e6b6c844967c
+    - name: player katana continuous attack 80x64_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 18
+        y: 16
+        width: 59
+        height: 36
+      spriteId: 695c4b68a70784f43821360f7b31af6e
+    - name: player katana continuous attack 80x64_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 25
+        y: 16
+        width: 19
+        height: 37
+      spriteId: a168147cc26d67349940b89b8e71698f
+    - name: player katana continuous attack 80x64_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 25
+        y: 16
+        width: 19
+        height: 37
+      spriteId: e97bc88acc6a1014193125ba6ccceca0
+    - name: player katana continuous attack 80x64_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 26
+        y: 16
+        width: 19
+        height: 36
+      spriteId: a3efb38c1147a154db0da4d5343159d9
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 80, y: 64}
