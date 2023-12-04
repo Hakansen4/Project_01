@@ -5,30 +5,32 @@ using UnityEngine;
 public class PlayerMovement 
 {
     private float runningSpeed;
+    private float jumpPower;
     private Rigidbody2D rigidbody;
     private Transform transform;
     private Vector3 destination;
-
-    public PlayerMovement(float runningSpeed, Rigidbody2D rigidbody, Transform transform)
+    private float HorizontalValue;
+    public PlayerMovement(float runningSpeed, Rigidbody2D rigidbody, Transform transform, float jumpPower)
     {
         this.runningSpeed = runningSpeed;
         this.rigidbody = rigidbody;
         this.transform = transform;
+        this.jumpPower = jumpPower;
     }
     public void Run()
     {
         Move(runningSpeed);
     }
+    public void Jump()
+    {
+        rigidbody.AddForce(new Vector2(rigidbody.velocity.x, jumpPower));
+    }
 
     private void Move(float speed)
     {
-        float HorizontalValue = InputManager.GetHoriontalValue();
+        HorizontalValue = InputManager.GetHoriontalValue();
 
-        destination = new Vector3(transform.position.x + speed * HorizontalValue * Time.fixedDeltaTime,
-                            transform.position.y, transform.position.z);
-
-        rigidbody.MovePosition(destination);
-
+        rigidbody.velocity = new Vector2(HorizontalValue * speed * Time.fixedDeltaTime, rigidbody.velocity.y);
         SetDirection(HorizontalValue);
     }
 
@@ -36,12 +38,10 @@ public class PlayerMovement
     {
         if (Value > 0)
         {
-            Debug.Log("Turned right");
             transform.localScale = new Vector3(1, 1, 1);
         }
         else if (Value < 0)
         {
-            Debug.Log("Turned left");
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }

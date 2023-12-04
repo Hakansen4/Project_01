@@ -14,6 +14,12 @@ public static class InputManager
         }
         return false;
     }
+    public static bool CheckJumpInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            return true;
+        return false;
+    }
     public static float GetHoriontalValue()
     { return Input.GetAxis(HORIZONTAL); }
 }

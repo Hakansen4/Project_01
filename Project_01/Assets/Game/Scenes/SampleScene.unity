@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 1524808620}
   - component: {fileID: 1524808619}
   - component: {fileID: 1524808621}
+  - component: {fileID: 1524808622}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -344,7 +345,9 @@ MonoBehaviour:
   _stateMachine: {fileID: 1524808620}
   _idleState: {fileID: 1524808619}
   _moveState: {fileID: 1524808621}
-  _runningSpeed: 5
+  _jumpState: {fileID: 1524808622}
+  _runningSpeed: 400
+  _jumpPower: 250
   _rigidbody: {fileID: 1524808618}
   _animator: {fileID: 1943121055}
 --- !u!50 &1524808618
@@ -362,7 +365,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -401,6 +404,7 @@ MonoBehaviour:
   states:
   - {fileID: 1524808619}
   - {fileID: 1524808621}
+  - {fileID: 1524808622}
 --- !u!114 &1524808621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +415,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 258e29f755076584dab0528ea41a2953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 1524808617}
+--- !u!114 &1524808622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524808615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27fc83a2b53c52489ae8d6b0f6b62e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 1524808617}
@@ -427,7 +444,7 @@ GameObject:
   - component: {fileID: 1741789308}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
