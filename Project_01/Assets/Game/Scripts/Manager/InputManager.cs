@@ -20,6 +20,13 @@ public static class InputManager
             return true;
         return false;
     }
+
+    public static bool CheckCombatInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+            return true;
+        return false;
+    }
     public static float GetHoriontalValue()
     { return Input.GetAxis(HORIZONTAL); }
 }
