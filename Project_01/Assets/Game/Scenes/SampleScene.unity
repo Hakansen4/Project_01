@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 1524808619}
   - component: {fileID: 1524808621}
   - component: {fileID: 1524808622}
+  - component: {fileID: 1524808623}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -347,9 +348,11 @@ MonoBehaviour:
   _moveState: {fileID: 1524808621}
   _jumpState: {fileID: 1524808622}
   _combatState: {fileID: 1943121056}
+  _pushState: {fileID: 1524808623}
   _rigidbody: {fileID: 1524808618}
   _animator: {fileID: 1943121055}
   _runningSpeed: 400
+  _pushSpeed: 100
   _jumpPower: 250
   _attackPower: 500
   _attackCooldown: 2
@@ -409,6 +412,7 @@ MonoBehaviour:
   - {fileID: 1524808621}
   - {fileID: 1524808622}
   - {fileID: 1943121056}
+  - {fileID: 1524808623}
 --- !u!114 &1524808621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +439,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 1524808617}
+--- !u!114 &1524808623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524808615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c41fa9f20ed79438fc1f0ebf400af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1524808617}
 --- !u!1 &1741789305
 GameObject:
   m_ObjectHideFlags: 0

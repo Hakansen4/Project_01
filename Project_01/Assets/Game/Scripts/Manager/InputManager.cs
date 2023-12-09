@@ -27,6 +27,18 @@ public static class InputManager
             return true;
         return false;
     }
+    public static bool CheckPushInput()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+            return true;
+        return false;
+    }
+    public static bool CheckBackInput()
+    {
+        if(Input.GetKeyDown(KeyCode.U))
+            return true;
+        return false;
+    }
     public static float GetHoriontalValue()
     { return Input.GetAxis(HORIZONTAL); }
 }

@@ -8,30 +8,36 @@ public class PlayerMovement
     private float jumpPower;
     private Rigidbody2D rigidbody;
     private Transform transform;
-    private Vector3 destination;
-    private float HorizontalValue;
-    public PlayerMovement(float runningSpeed, Rigidbody2D rigidbody, Transform transform, float jumpPower)
+    private float horizontalValue;
+    private float pushSpeed;
+    public PlayerMovement(float runningSpeed, Rigidbody2D rigidbody, Transform transform, float jumpPower,float pushSpeed)
     {
         this.runningSpeed = runningSpeed;
         this.rigidbody = rigidbody;
         this.transform = transform;
         this.jumpPower = jumpPower;
+        this.pushSpeed = pushSpeed;
     }
     public void Run()
     {
         Move(runningSpeed);
+        SetDirection(horizontalValue);
     }
     public void Jump()
     {
         rigidbody.AddForce(new Vector2(rigidbody.velocity.x, jumpPower));
     }
+    public float PushMove()
+    {
+        Move(pushSpeed);
+        return horizontalValue * transform.localScale.x;
+    }
 
     private void Move(float speed)
     {
-        HorizontalValue = InputManager.GetHoriontalValue();
+        horizontalValue = InputManager.GetHoriontalValue();
 
-        rigidbody.velocity = new Vector2(HorizontalValue * speed * Time.fixedDeltaTime, rigidbody.velocity.y);
-        SetDirection(HorizontalValue);
+        rigidbody.velocity = new Vector2(horizontalValue * speed * Time.fixedDeltaTime, rigidbody.velocity.y);
     }
 
     private void SetDirection(float Value)

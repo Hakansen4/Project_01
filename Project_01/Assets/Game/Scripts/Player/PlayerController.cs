@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private const string JUMP = "Jump";
     private const string JUMPT = "JumpT";
     private const string EXPLODE = "Explode";
+    private const string PUSH = "Push";
+    private const string PULL = "Pull";
 
     private const string STATES = "STATES";
     private const string COMPONENTS = "COMPONENTS";
@@ -21,12 +23,14 @@ public class PlayerController : MonoBehaviour
     [FoldoutGroup(STATES), SerializeField] private State _moveState;
     [FoldoutGroup(STATES), SerializeField] private State _jumpState;
     [FoldoutGroup(STATES), SerializeField] private State _combatState;
+    [FoldoutGroup(STATES), SerializeField] private State _pushState;
     #endregion
     #region Components
     [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
     [FoldoutGroup(COMPONENTS), SerializeField] private Animator _animator;
     #endregion
     [SerializeField] private float _runningSpeed;
+    [SerializeField] private float _pushSpeed;
     [SerializeField] private float _jumpPower;
     [SerializeField] private float _attackPower;
     [SerializeField] private float _attackCooldown;
@@ -35,11 +39,14 @@ public class PlayerController : MonoBehaviour
     public PlayerCombat Combat;
     private void Awake()
     {
-        Movement = new PlayerMovement(_runningSpeed, _rigidbody, transform, _jumpPower);
+        Movement = new PlayerMovement(_runningSpeed, _rigidbody, transform, _jumpPower, _pushSpeed);
         Combat = new PlayerCombat(_attackPower, _attackCooldown, _rigidbody);
     }
     private void Update()
     {
+        if (InputManager.CheckPushInput())
+            ChangeState(PlayerState.Push);
+
         if (InputManager.CheckCombatInput())
             ChangeState(PlayerState.Combat);
 
@@ -76,6 +83,10 @@ public class PlayerController : MonoBehaviour
                 if (CheckStateTransition(state))
                     _stateMachine.TransitionTo(_combatState);
                 break;
+            case PlayerState.Push:
+                if(CheckStateTransition(state))
+                    _stateMachine.TransitionTo(_pushState);
+                break;
         }
     }
 
@@ -85,20 +96,25 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerState.Idle:
                 if(_stateMachine.CurrentState != _idleState && _stateMachine.CurrentState != _jumpState &&
-                    _stateMachine.CurrentState != _combatState)
+                    _stateMachine.CurrentState != _combatState && _stateMachine.CurrentState != _pushState)
                     return true;
                 break;
             case PlayerState.Move:
                 if (_stateMachine.CurrentState != _moveState && _stateMachine.CurrentState != _jumpState &&
-                    _stateMachine.CurrentState != _combatState)
+                    _stateMachine.CurrentState != _combatState && _stateMachine.CurrentState != _pushState)
                     return true;
                 break;
             case PlayerState.Jump:
-                if(_stateMachine.CurrentState != _jumpState &&  _stateMachine.CurrentState != _combatState)
+                if(_stateMachine.CurrentState != _jumpState &&  _stateMachine.CurrentState != _combatState &&
+                    _stateMachine.CurrentState != _pushState)
                     return true;
                 break;
             case PlayerState.Combat:
-                if(_stateMachine.CurrentState != _combatState && Combat.CanExplode())
+                if(_stateMachine.CurrentState != _combatState && Combat.CanExplode() && _stateMachine.CurrentState != _pushState)
+                    return true;
+                break;
+            case PlayerState.Push:
+                if(_stateMachine.CurrentState == _idleState || _stateMachine.CurrentState == _moveState)
                     return true;
                 break;
         }
@@ -128,14 +144,24 @@ public class PlayerController : MonoBehaviour
             case PLayerAnims.Jump:
                 _animator.SetBool(JUMP, isTrue);
                 break;
+            case PLayerAnims.Push:
+                _animator.SetBool(PUSH, isTrue);
+                break;
+            case PLayerAnims.Pull:
+                _animator.SetBool(PULL, isTrue);
+                break;
         }
+    }
+    public void SetAnimationLayer(int index,float weight)
+    {
+        _animator.SetLayerWeight(index, weight);
     }
 }
 public enum PlayerState
 {
-    Idle,Move,Jump,Combat
+    Idle,Move,Jump,Combat,Push
 }
 public enum PLayerAnims
 {
-    Run,Jump,Combat
+    Run,Jump,Combat,Push,Pull
 }
