@@ -4,11 +4,11 @@ using UnityEngine;
 using Ambrosia.StateMachine;
 public class AttackP : State
 {
-    [SerializeField] private PlayerController controller;
+    [SerializeField] private PlayerController _controller;
     protected override void OnEnter()
     {
         Debug.Log("Player on Attack State");
-        controller.SetAnimation(PLayerAnims.Combat);
+        _controller.SetAnimation(PLayerAnims.Combat);
     }
 
     protected override void OnExit()
@@ -18,12 +18,12 @@ public class AttackP : State
     //Calling from animation
     public void EXPLODE()
     {
-        controller.Combat.Explode();
+        _controller.Combat.Explode();
     }
 
     //Calling from animation
     public void AttackFinished()
     {
-        controller.ResetState();
+        _controller.ResetState();
     }
 }

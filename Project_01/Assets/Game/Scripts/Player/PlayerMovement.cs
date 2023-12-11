@@ -25,6 +25,7 @@ public class PlayerMovement
     }
     public void Jump()
     {
+        rigidbody.velocity *= Vector2.right;
         rigidbody.AddForce(new Vector2(rigidbody.velocity.x, jumpPower));
     }
     public float PushMove()
