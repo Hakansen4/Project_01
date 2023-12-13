@@ -80,14 +80,6 @@ public class PlayerController : MonoBehaviour
         if (_stateMachine.CurrentState != _idleState)
             _stateMachine.TransitionTo(_idleState);
     }
-    public void TransitionToWallSlide()
-    {
-        _stateMachine.TransitionTo(_wallSlideState);
-    }
-    public void TransitionToLedgeClimb()
-    {
-        _stateMachine.TransitionTo(_ledgeClimbState);
-    }
     private void ChangeState(PlayerState state)
     {
         switch (state)

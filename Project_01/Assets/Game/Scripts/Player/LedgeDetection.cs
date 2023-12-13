@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LedgeDetection : MonoBehaviour
 {
+    private const string GROUND = "Ground";
+
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask _layerMask;
 
@@ -16,18 +18,14 @@ public class LedgeDetection : MonoBehaviour
 
         return false;
     }
-    private void Update()
-    {
-        Debug.Log(CheckLedge());
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer(GROUND))
             canDetect = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer(GROUND))
             canDetect = true;
     }
     private void OnDrawGizmos()

@@ -7,7 +7,6 @@ public class AttackP : State
     [SerializeField] private PlayerController _controller;
     protected override void OnEnter()
     {
-        Debug.Log("Player on Attack State");
         _controller.SetAnimation(PLayerAnims.Combat);
     }
 

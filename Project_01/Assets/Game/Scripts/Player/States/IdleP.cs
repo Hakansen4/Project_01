@@ -8,7 +8,6 @@ public class IdleP : State
 {
     protected override void OnEnter()
     {
-        Debug.Log("Player on Idle State");
     }
 
     protected override void OnExit()
