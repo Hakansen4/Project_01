@@ -17,6 +17,7 @@ public class JumpP : State
         timer = 0;
         _controller.Movement.Jump();
         _controller.SetAnimation(PLayerAnims.Jump);
+        //CheckLedgeClimb();
     }
     protected override void OnExit()
     {
@@ -25,10 +26,16 @@ public class JumpP : State
     
     private void FixedUpdate()
     {
+        //CheckLedgeClimb();
         _controller.Movement.Run();
         CheckGroundHit();
         CheckWallHit();
     }
+    //private void CheckLedgeClimb()
+    //{
+    //    if (_controller.LedgeDetect.CheckLedge())
+    //        _controller.TransitionToLedgeClimb();
+    //}
     private void CheckWallHit()
     {
         if (_controller.Collide.CheckWallCollide() && !_controller.Collide.CheckGrounded()  &&  timer > checkTimer)

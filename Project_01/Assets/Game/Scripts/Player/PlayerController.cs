@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private const string PULL = "Pull";
     private const string WALLSLIDE = "WallSlide";
     private const string WALLSLIDET = "WallSlideT";
+    private const string LEDGECLIMB = "LedgeClimb";
 
     private const string STATES = "STATES";
     private const string COMPONENTS = "COMPONENTS";
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [FoldoutGroup(STATES), SerializeField] private State _combatState;
     [FoldoutGroup(STATES), SerializeField] private State _pushState;
     [FoldoutGroup(STATES), SerializeField] private State _wallSlideState;
+    [FoldoutGroup(STATES), SerializeField] private State _ledgeClimbState;
     #endregion
     #region Components
     [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     public PlayerCollider Collide;
+    public LedgeDetection LedgeDetect;
     public PlayerMovement Movement;
     public PlayerCombat Combat;
     private void Awake()
@@ -52,6 +55,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        if (LedgeDetect.CheckLedge())
+            ChangeState(PlayerState.LedgeClimb);
+
         if (InputManager.CheckJumpInput())
             ChangeState(PlayerState.Jump);
 
@@ -77,6 +83,10 @@ public class PlayerController : MonoBehaviour
     public void TransitionToWallSlide()
     {
         _stateMachine.TransitionTo(_wallSlideState);
+    }
+    public void TransitionToLedgeClimb()
+    {
+        _stateMachine.TransitionTo(_ledgeClimbState);
     }
     private void ChangeState(PlayerState state)
     {
@@ -106,6 +116,10 @@ public class PlayerController : MonoBehaviour
                 if (CheckStateTransition(state))
                     _stateMachine.TransitionTo(_wallSlideState);
                 break;
+            case PlayerState.LedgeClimb:
+                if (CheckStateTransition(state))
+                    _stateMachine.TransitionTo(_ledgeClimbState);
+                break;
         }
     }
 
@@ -116,23 +130,23 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Idle:
                 if(_stateMachine.CurrentState != _idleState && _stateMachine.CurrentState != _jumpState &&
                     _stateMachine.CurrentState != _combatState && _stateMachine.CurrentState != _pushState &&
-                    _stateMachine.CurrentState != _wallSlideState)
+                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState)
                     return true;
                 break;
             case PlayerState.Move:
                 if (_stateMachine.CurrentState != _moveState && _stateMachine.CurrentState != _jumpState &&
                     _stateMachine.CurrentState != _combatState && _stateMachine.CurrentState != _pushState &&
-                    _stateMachine.CurrentState != _wallSlideState)
+                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState)
                     return true;
                 break;
             case PlayerState.Jump:
                 if(_stateMachine.CurrentState != _jumpState &&  _stateMachine.CurrentState != _combatState &&
-                    _stateMachine.CurrentState != _pushState)
+                    _stateMachine.CurrentState != _pushState && _stateMachine.CurrentState != _ledgeClimbState)
                     return true;
                 break;
             case PlayerState.Combat:
                 if(_stateMachine.CurrentState != _combatState && Combat.CanExplode() && _stateMachine.CurrentState != _pushState &&
-                    _stateMachine.CurrentState != _wallSlideState)
+                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState)
                     return true;
                 break;
             case PlayerState.Push:
@@ -141,8 +155,13 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.WallSlide:
                 if (_stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _combatState &&
-                    _stateMachine.CurrentState != _pushState    &&  _stateMachine.CurrentState != _jumpState)
+                    _stateMachine.CurrentState != _pushState    &&  _stateMachine.CurrentState != _jumpState
+                    && _stateMachine.CurrentState != _ledgeClimbState)
                     return true;
+                break;
+            case PlayerState.LedgeClimb:
+                if(_stateMachine.CurrentState != _ledgeClimbState)
+                   return true;
                 break;
         }
         return false;
@@ -161,6 +180,9 @@ public class PlayerController : MonoBehaviour
             case PLayerAnims.WallSlide:
                 _animator.SetTrigger(WALLSLIDET);
                 _animator.SetBool(WALLSLIDE, true);
+                break;
+            case PLayerAnims.LedgeClimb:
+                _animator.SetTrigger(LEDGECLIMB);
                 break;
         }
     }
@@ -199,12 +221,16 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.gravityScale = GRAVITY;
     }
+    public void ResetVelocity()
+    {
+        _rigidbody.velocity = Vector2.zero;
+    }
 }
 public enum PlayerState
 {
-    Idle,Move,Jump,Combat,Push,WallSlide
+    Idle,Move,Jump,Combat,Push,WallSlide,LedgeClimb
 }
 public enum PLayerAnims
 {
-    Run,Jump,Combat,Push,Pull,WallSlide
+    Run,Jump,Combat,Push,Pull,WallSlide,LedgeClimb
 }
