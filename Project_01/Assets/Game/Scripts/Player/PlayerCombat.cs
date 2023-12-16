@@ -18,9 +18,9 @@ public class PlayerCombat
     }
     public void Explode()
     {
-        explodeTime = Time.time;
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * power);
+        explodeTime = Time.time;
     }
     public bool CanExplode()
     {

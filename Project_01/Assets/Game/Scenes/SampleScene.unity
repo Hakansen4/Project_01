@@ -977,37 +977,6 @@ MonoBehaviour:
   _controller: {fileID: 1524808617}
   _startOffset: {x: 0.162, y: -0.07, z: 0}
   _endOffset: {x: 0.882, y: 1.079, z: 0}
---- !u!1 &1988072704
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1988072705}
-  m_Layer: 0
-  m_Name: "Scriptleri D\xFCzenleyip Fix olarak yolla githuba"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1988072705
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988072704}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3861415, y: 0.47412753, z: 0.002888292}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048824426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,4 +1116,3 @@ SceneRoots:
   - {fileID: 1741789307}
   - {fileID: 1432005430}
   - {fileID: 2048824428}
-  - {fileID: 1988072705}
