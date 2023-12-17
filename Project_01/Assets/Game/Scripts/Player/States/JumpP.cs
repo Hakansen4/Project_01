@@ -9,7 +9,7 @@ public class JumpP : State
 {
     [SerializeField] PlayerController _controller;
 
-    private const float checkTimer = 0.1f;
+    private const float checkTimer = 0.2f;
     private float timer;
     protected override void OnEnter()
     {

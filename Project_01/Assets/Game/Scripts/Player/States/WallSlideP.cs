@@ -12,6 +12,7 @@ public class WallSlideP : State
     private float GravityValue = 0.5f;
     protected override void OnEnter()
     {
+        _controller.ResetVelocity();
         _controller.SetAnimation(PLayerAnims.WallSlide);
         _controller.SetGravity(GravityValue);
     }
@@ -27,7 +28,10 @@ public class WallSlideP : State
     }
     private void CheckGroundHit()
     {
-        if (_controller.Collide.CheckGrounded() ||  !_controller.Collide.CheckWallCollide())
+        if (InputManager.CheckJumpInput())
+            _controller.WallToJump();
+
+        if (_controller.Collide.CheckGrounded() || !_controller.Collide.CheckWallCollide())
             _controller.ResetState();
     }
 }

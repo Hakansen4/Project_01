@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _attackCooldown;
     #endregion
 
+    [ShowInInspector]
+    private bool canWallSlide = true;
+
+
     public PlayerCollider Collide;
     public LedgeDetection LedgeDetect;
     public PlayerMovement Movement;
@@ -61,7 +65,7 @@ public class PlayerController : MonoBehaviour
         if (InputManager.CheckJumpInput())
             ChangeState(PlayerState.Jump);
 
-        if (Collide.CheckWallCollide()  &&  !Collide.CheckGrounded())
+        else if (Collide.CheckWallCollide()  &&  !Collide.CheckGrounded())
             ChangeState(PlayerState.WallSlide);
 
         if (InputManager.CheckPushInput())
@@ -147,8 +151,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.WallSlide:
                 if (_stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _combatState &&
-                    _stateMachine.CurrentState != _pushState    &&  _stateMachine.CurrentState != _jumpState
-                    && _stateMachine.CurrentState != _ledgeClimbState)
+                    _stateMachine.CurrentState != _pushState && _stateMachine.CurrentState != _ledgeClimbState &&
+                    canWallSlide)
                     return true;
                 break;
             case PlayerState.LedgeClimb:
@@ -216,6 +220,19 @@ public class PlayerController : MonoBehaviour
     public void ResetVelocity()
     {
         _rigidbody.velocity = Vector2.zero;
+    }
+    
+    public void WallToJump()
+    {
+        StopCoroutine(ResetWallSlide());
+        _stateMachine.TransitionTo(_jumpState);
+        canWallSlide = false;
+        StartCoroutine(ResetWallSlide());
+    }
+    private IEnumerator ResetWallSlide()
+    {
+        yield return new WaitForSeconds(1.0f);
+        canWallSlide = true;
     }
 }
 public enum PlayerState
