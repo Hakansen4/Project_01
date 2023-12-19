@@ -13,10 +13,9 @@ public class Test_PlayerMovement
         gm.AddComponent<Rigidbody2D>();
         float runningSpeed = 10.0f;
         float jumpPower = 10.0f;
-        float pushSpeed = 10.0f;
 
         PlayerMovement movement = new PlayerMovement(runningSpeed, gm.GetComponent<Rigidbody2D>(),
-            gm.GetComponent<Transform>(), jumpPower, pushSpeed);
+            gm.GetComponent<Transform>(), jumpPower);
 
 
         movement.Run();
@@ -38,9 +37,9 @@ public class Test_PlayerMovement
         float pushSpeed = 10.0f;
 
         PlayerMovement movement = new PlayerMovement(runningSpeed, gm.GetComponent<Rigidbody2D>(),
-            gm.GetComponent<Transform>(), jumpPower, pushSpeed);
+            gm.GetComponent<Transform>(), jumpPower);
 
-        movement.PushMove();
+        movement.PushMove(pushSpeed);
 
         Assert.AreEqual(pushSpeed * Time.fixedDeltaTime * InputManager.GetHoriontalValue()
                         , gm.GetComponent<Rigidbody2D>().velocity.x);
@@ -56,10 +55,9 @@ public class Test_PlayerMovement
         gm.AddComponent<Rigidbody2D>();
         float runningSpeed = 10.0f;
         float jumpPower = 10.0f;
-        float pushSpeed = 10.0f;
 
         PlayerMovement movement = new PlayerMovement(runningSpeed, gm.GetComponent<Rigidbody2D>(),
-            gm.GetComponent<Transform>(), jumpPower, pushSpeed);
+            gm.GetComponent<Transform>(), jumpPower);
 
         movement.Jump();
 

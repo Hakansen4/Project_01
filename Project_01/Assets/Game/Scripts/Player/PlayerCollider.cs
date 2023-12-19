@@ -9,15 +9,22 @@ public class PlayerCollider : MonoBehaviour
 
     private bool grounded = false;
     private bool wallCollide = false;
+    private bool isPushing = false;
+
+    [HideInInspector] public IPushable pushObject = null;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GROUND))
         {
             grounded = true;
         }
-        if(collision.gameObject.CompareTag(WALL))
+        else if(collision.gameObject.CompareTag(WALL))
         {
             wallCollide = true;
+        }
+        else if(collision.gameObject.GetComponent<IPushable>() != null)
+        {
+            pushObject = collision.gameObject.GetComponent<IPushable>();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -26,10 +33,24 @@ public class PlayerCollider : MonoBehaviour
         {
             grounded = false;
         }
-        if (collision.gameObject.CompareTag(WALL))
+        else if (collision.gameObject.CompareTag(WALL))
         {
             wallCollide = false;
         }
+        else if(collision.gameObject.GetComponent<IPushable>() != null  &&  !isPushing)
+        {
+            pushObject = null;
+        }
+    }
+    public bool CheckPushObjectCollide()
+    {
+        if(pushObject != null)
+        {
+            pushObject.StartPush();
+            isPushing = true;
+            return true;
+        }
+        return false;
     }
     public bool CheckGrounded()
     {

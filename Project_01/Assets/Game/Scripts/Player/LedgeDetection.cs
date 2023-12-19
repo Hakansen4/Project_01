@@ -5,6 +5,7 @@ using UnityEngine;
 public class LedgeDetection : MonoBehaviour
 {
     private const string GROUND = "Ground";
+    private const string OBJECT = "Object";
 
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask _layerMask;
@@ -20,12 +21,14 @@ public class LedgeDetection : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer(GROUND))
+        if(collision.gameObject.layer == LayerMask.NameToLayer(GROUND) 
+            || collision.gameObject.layer == LayerMask.NameToLayer(OBJECT))
             canDetect = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(GROUND))
+        if (collision.gameObject.layer == LayerMask.NameToLayer(GROUND)
+            || collision.gameObject.layer == LayerMask.NameToLayer(OBJECT))
             canDetect = true;
     }
     private void OnDrawGizmos()

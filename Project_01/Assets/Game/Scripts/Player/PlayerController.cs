@@ -38,10 +38,10 @@ public class PlayerController : MonoBehaviour
     private const float GRAVITY = 1.5f;
 
     [SerializeField] private float _runningSpeed;
-    [SerializeField] private float _pushSpeed;
     [SerializeField] private float _jumpPower;
     [SerializeField] private float _attackPower;
     [SerializeField] private float _attackCooldown;
+
     #endregion
 
     [ShowInInspector]
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     public PlayerCombat Combat;
     private void Awake()
     {
-        Movement = new PlayerMovement(_runningSpeed, _rigidbody, transform, _jumpPower, _pushSpeed);
+        Movement = new PlayerMovement(_runningSpeed, _rigidbody, transform, _jumpPower);
         Combat = new PlayerCombat(_attackPower, _attackCooldown, _rigidbody);
     }
     private void Update()
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         else if (Collide.CheckWallCollide()  &&  !Collide.CheckGrounded())
             ChangeState(PlayerState.WallSlide);
 
-        if (InputManager.CheckPushInput())
+        if (InputManager.CheckPushInput()   &&  Collide.CheckPushObjectCollide())
             ChangeState(PlayerState.Push);
 
         if (InputManager.CheckCombatInput())

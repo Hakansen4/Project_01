@@ -9,14 +9,12 @@ public class PlayerMovement
     private Rigidbody2D rigidbody;
     private Transform transform;
     private float horizontalValue;
-    private float pushSpeed;
-    public PlayerMovement(float runningSpeed, Rigidbody2D rigidbody, Transform transform, float jumpPower,float pushSpeed)
+    public PlayerMovement(float runningSpeed, Rigidbody2D rigidbody, Transform transform, float jumpPower)
     {
         this.runningSpeed = runningSpeed;
         this.rigidbody = rigidbody;
         this.transform = transform;
         this.jumpPower = jumpPower;
-        this.pushSpeed = pushSpeed;
     }
     public void Run()
     {
@@ -28,9 +26,9 @@ public class PlayerMovement
         rigidbody.velocity *= Vector2.right;
         rigidbody.AddForce(new Vector2(rigidbody.velocity.x, jumpPower));
     }
-    public float PushMove()
+    public float PushMove(float PushSpeed)
     {
-        Move(pushSpeed);
+        Move(PushSpeed);
         return horizontalValue * transform.localScale.x;
     }
 
