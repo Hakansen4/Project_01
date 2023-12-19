@@ -24,6 +24,7 @@ public class PlayerCollider : MonoBehaviour
         }
         else if(collision.gameObject.GetComponent<IPushable>() != null)
         {
+            grounded = true;
             pushObject = collision.gameObject.GetComponent<IPushable>();
         }
     }
@@ -39,6 +40,7 @@ public class PlayerCollider : MonoBehaviour
         }
         else if(collision.gameObject.GetComponent<IPushable>() != null  &&  !isPushing)
         {
+            grounded = false;
             pushObject = null;
         }
     }
