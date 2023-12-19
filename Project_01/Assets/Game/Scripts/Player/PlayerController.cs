@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
                     return true;
                 break;
             case PlayerState.LedgeClimb:
-                if(_stateMachine.CurrentState != _ledgeClimbState)
+                if(_stateMachine.CurrentState != _ledgeClimbState && _stateMachine.CurrentState != _pushState)
                    return true;
                 break;
         }

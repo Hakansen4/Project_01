@@ -11,9 +11,13 @@ public class ObjectController : MonoBehaviour, IPushable
     [SerializeField] private Rigidbody2D _rb;
 
     private bool canMove = false;
+    private bool isStuck = false;
+
     public float GetPushSpeed()
     {
-        return _pushSpeed;
+        if(!isStuck)
+            return _pushSpeed;
+        return 0.0f;
     }
 
     public void StartPush()
@@ -29,10 +33,18 @@ public class ObjectController : MonoBehaviour, IPushable
     }
     private void FixedUpdate()
     {
+        CheckStuck();
         if (!canMove)
             return;
 
         Move();
+    }
+    private void CheckStuck()
+    {
+        if(InputManager.GetHoriontalValue() != 0.0f && _rb.velocity.x == 0)
+            isStuck = true;
+        else
+            isStuck = false;
     }
     private void Move()
     {

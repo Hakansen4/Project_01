@@ -7,13 +7,11 @@ public class PushP : State
 {
     [SerializeField] private PlayerController _controller;
 
-    private float pushSpeed = 0.0f;
     private const int animationLayer = 1;
     private const int animationWeight = 1;
     private float direction;
     protected override void OnEnter()
     {
-        pushSpeed = _controller.Collide.pushObject.GetPushSpeed();
         _controller.SetAnimationLayer(animationLayer, animationWeight);
     }
 
@@ -36,7 +34,7 @@ public class PushP : State
     }
     private void CheckMovement()
     {
-        direction = _controller.Movement.PushMove(pushSpeed);
+        direction = _controller.Movement.PushMove(_controller.Collide.pushObject.GetPushSpeed());
         if (direction == 0)
             SetAnimations(false, false);
         else if (direction > 0)
