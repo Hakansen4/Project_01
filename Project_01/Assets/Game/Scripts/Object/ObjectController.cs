@@ -10,46 +10,28 @@ public class ObjectController : MonoBehaviour, IPushable
 
     [SerializeField] private Rigidbody2D _rb;
 
-    private bool canMove = false;
-    private bool isStuck = false;
+    private ObjectMovement movement;
 
+    private void Awake()
+    {
+        movement = new ObjectMovement(_pushSpeed,_rb);
+    }
+    private void FixedUpdate()
+    {
+        movement.MoveWorks();
+    }
     public float GetPushSpeed()
     {
-        if(!isStuck)
-            return _pushSpeed;
-        return 0.0f;
+        return movement.GetPushSpeed();
     }
 
     public void StartPush()
     {
-        canMove = true;
-        _rb.bodyType = RigidbodyType2D.Dynamic;
+        movement.StartPush();
     }
 
     public void StopPush()
     {
-        _rb.bodyType = RigidbodyType2D.Static;
-        canMove = false;
-    }
-    private void FixedUpdate()
-    {
-        CheckStuck();
-        if (!canMove)
-            return;
-
-        Move();
-    }
-    private void CheckStuck()
-    {
-        if(InputManager.GetHoriontalValue() != 0.0f && _rb.velocity.x == 0)
-            isStuck = true;
-        else
-            isStuck = false;
-    }
-    private void Move()
-    {
-        float horizontalValue = InputManager.GetHoriontalValue();
-
-        _rb.velocity = new Vector2(horizontalValue * _pushSpeed * Time.fixedDeltaTime, _rb.velocity.y);
+        movement.StopPush();
     }
 }

@@ -581,7 +581,6 @@ MonoBehaviour:
   _rigidbody: {fileID: 1524808618}
   _animator: {fileID: 1943121055}
   _runningSpeed: 400
-  _pushSpeed: 100
   _jumpPower: 350
   _attackPower: 500
   _attackCooldown: 2

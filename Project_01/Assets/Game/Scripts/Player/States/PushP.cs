@@ -19,6 +19,7 @@ public class PushP : State
     {
         _controller.SetAnimationLayer(animationLayer, 0);
         _controller.Collide.pushObject.StopPush();
+        _controller.Collide.PushOver();
     }
     private void FixedUpdate()
     {
