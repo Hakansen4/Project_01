@@ -12,6 +12,17 @@ public class PlayerCollider : MonoBehaviour
     private bool isPushing = false;
 
     [HideInInspector] public IPushable pushObject = null;
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<IPushable>() != null &&
+                transform.position.y < collision.gameObject.transform.position.y)
+        {
+            pushObject = collision.gameObject.GetComponent<IPushable>();
+        }
+        else if(!isPushing)
+            pushObject = null;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GROUND))
@@ -21,11 +32,6 @@ public class PlayerCollider : MonoBehaviour
         else if(collision.gameObject.CompareTag(WALL))
         {
             wallCollide = true;
-        }
-        else if(collision.gameObject.GetComponent<IPushable>() != null  && 
-                transform.position.y < collision.gameObject.transform.position.y)
-        {
-            pushObject = collision.gameObject.GetComponent<IPushable>();
         }
         else if(collision.gameObject.GetComponent<IPushable>() != null)
         {
@@ -49,6 +55,7 @@ public class PlayerCollider : MonoBehaviour
     }
     public void PushOver()
     {
+        isPushing = false;
         pushObject = null;
     }
     public bool CheckPushObjectCollide()
