@@ -5,6 +5,7 @@ using Ambrosia.StateMachine;
 
 public class ChaseE : State
 {
+    [SerializeField] private EnemyController _controller;
     protected override void OnEnter()
     {
         Debug.Log("AAA");
@@ -12,5 +13,9 @@ public class ChaseE : State
 
     protected override void OnExit()
     {
+    }
+    private void Update()
+    {
+        _controller.movement.ChaseMove();
     }
 }

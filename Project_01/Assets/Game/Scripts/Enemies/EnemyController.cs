@@ -20,14 +20,17 @@ public class EnemyController : MonoBehaviour
 
     public EnemyMovement movement;
     #endregion
-    #region States
+    #region Values
     [SerializeField] private float _speed;
     [SerializeField] private float _chaseRange;
+    [SerializeField] private float _attackRange;
+
+    private float range = 0;
     #endregion
 
     private void Awake()
     {
-        movement = new EnemyMovement(transform, _rigidbody, _speed, _leftBorder.position, _rightBorder.position);
+        movement = new EnemyMovement(transform,_player, _rigidbody, _speed, _leftBorder.position, _rightBorder.position);
     }
     private void Update()
     {
@@ -35,22 +38,15 @@ public class EnemyController : MonoBehaviour
     }
     private void CheckStateTransition()
     {
-        if(_player.position.x - transform.position.x >= -_chaseRange &&  _stateMachine.CurrentState != _chaseState)
+        range = Mathf.Abs(_player.position.x - transform.position.x);
+
+        if (range <= _chaseRange &&  _stateMachine.CurrentState != _chaseState)
         {
             _stateMachine.TransitionTo(_chaseState);
         }
-        else if(_stateMachine.CurrentState != _patrolState)
+        else if(_stateMachine.CurrentState != _patrolState && range > _chaseRange)
         {
             _stateMachine.TransitionTo(_patrolState);
-        }
-    }
-    private void ChangeState(EnemyState state)
-    {
-        switch (state)
-        {
-            case EnemyState.Patrol:
-                _stateMachine.TransitionTo(_patrolState);
-                break;
         }
     }
 }
