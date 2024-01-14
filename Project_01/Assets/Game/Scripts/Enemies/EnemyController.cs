@@ -1,22 +1,27 @@
 using Ambrosia.StateMachine;
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.VersionControl.Asset;
 
 public class EnemyController : MonoBehaviour
 {
     #region STRINGS
+    private const string COMPONENTS = "COMPONENTS";
+    private const string STATES = "STATES";
     #endregion
     #region States
-    [SerializeField] private StateMachine _stateMachine;
-    [SerializeField] private State _patrolState;
-    [SerializeField] private State _chaseState;
+    [FoldoutGroup(STATES), SerializeField] private StateMachine _stateMachine;
+    [FoldoutGroup(STATES), SerializeField] private State _patrolState;
+    [FoldoutGroup(STATES), SerializeField] private State _chaseState;
+    [FoldoutGroup(STATES), SerializeField] private State _attackState;
     #endregion
     #region Components
-    [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private Transform _leftBorder;
-    [SerializeField] private Transform _rightBorder;
-    [SerializeField] private Transform _player;
+    [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
+    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _leftBorder;
+    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _rightBorder;
+    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _player;
 
     public EnemyMovement movement;
     #endregion
@@ -40,13 +45,20 @@ public class EnemyController : MonoBehaviour
     {
         range = Mathf.Abs(_player.position.x - transform.position.x);
 
-        if (range <= _chaseRange &&  _stateMachine.CurrentState != _chaseState)
+        if(range <= _attackRange)
         {
-            _stateMachine.TransitionTo(_chaseState);
+            if(_stateMachine.CurrentState != _attackState)
+                _stateMachine.TransitionTo(_attackState);
         }
-        else if(_stateMachine.CurrentState != _patrolState && range > _chaseRange)
+        else if (range <= _chaseRange && _stateMachine.CurrentState != _attackState)
         {
-            _stateMachine.TransitionTo(_patrolState);
+            if (_stateMachine.CurrentState != _chaseState)
+                _stateMachine.TransitionTo(_chaseState);
+        }
+        else if(range > _chaseRange && _stateMachine.CurrentState != _attackState)
+        {
+            if (_stateMachine.CurrentState != _patrolState)
+                _stateMachine.TransitionTo(_patrolState);
         }
     }
 }

@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 69113111}
   - component: {fileID: 69113110}
   - component: {fileID: 69113113}
+  - component: {fileID: 69113114}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -216,6 +217,7 @@ MonoBehaviour:
   states:
   - {fileID: 69113110}
   - {fileID: 69113113}
+  - {fileID: 69113114}
 --- !u!114 &69113112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,12 +233,14 @@ MonoBehaviour:
   _stateMachine: {fileID: 69113111}
   _patrolState: {fileID: 69113110}
   _chaseState: {fileID: 69113113}
+  _attackState: {fileID: 69113114}
   _rigidbody: {fileID: 69113109}
   _leftBorder: {fileID: 656190143}
   _rightBorder: {fileID: 1897673038}
   _player: {fileID: 1524808616}
   _speed: 300
   _chaseRange: 2
+  _attackRange: 0.5
 --- !u!114 &69113113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +251,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de3f8532714653e4b835d9081cd81f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 69113112}
+--- !u!114 &69113114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69113107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a850cc3835da2564287e64827ca856f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 69113112}

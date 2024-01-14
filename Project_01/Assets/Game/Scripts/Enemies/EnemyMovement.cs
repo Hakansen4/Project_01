@@ -33,6 +33,10 @@ public class EnemyMovement
         CheckPlayerPosition();
         Move(moveDirection);
     }
+    public void Stop()
+    {
+        rb.velocity = Vector2.zero;
+    }
     private void CheckPatroBorders()
     {
         if (transform.position.x <= leftBorder.x && moveDirection == AIMoveDirection.left)
