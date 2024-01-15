@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
     #region Components
     [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
     [FoldoutGroup(COMPONENTS), SerializeField] private Animator _animator;
+
+    [FoldoutGroup(COMPONENTS)]  public PlayerCollider Collide;
+    [FoldoutGroup(COMPONENTS)]  public LedgeDetection LedgeDetect;
+    [FoldoutGroup(COMPONENTS)]  public PlayerMovement Movement;
+    [FoldoutGroup(COMPONENTS)]  public PlayerCombat Combat;
     #endregion
     #region Stats
     private const float GRAVITY = 1.5f;
@@ -44,14 +49,7 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    [ShowInInspector]
     private bool canWallSlide = true;
-
-
-    public PlayerCollider Collide;
-    public LedgeDetection LedgeDetect;
-    public PlayerMovement Movement;
-    public PlayerCombat Combat;
     private void Awake()
     {
         Movement = new PlayerMovement(_runningSpeed, _rigidbody, transform, _jumpPower);
