@@ -7,6 +7,8 @@
 ## Player Works
 - *Player going to have lots of features. This section is more about basic Player works.*
 - *Player can run, jump and stay idle with animations.*
+
+
 ### Player Explode (On Progress)
 - *Player Explode is the attack style of the Player. In the game our Player going to use his Explode skill for push his enemies to the deadly positions. Explode is not going to give damage to the enemies.
 Just push them to deadly positions.*
@@ -38,20 +40,57 @@ Just push them to deadly positions.*
 
 ![ezgif-2-cfe3992dbf](https://github.com/Hakansen4/Project_01/assets/62704352/530fa1d8-a785-4dba-ab0e-03e72a133235)
 
+## Enemy Works
+- *This section is about basic Enemy works.*
+- *Enemies can Idle, Patrol, Chase and Attack. All enemy types going to have this abilities but the type of this abilities going to change by enemy type.*
+- *In this section you will see the standard of the states. New types of these will be on the next features.*
+
+### Enemy Idle
+- *Enemy idle is going to same for every enemy.
+- *In idle state our enemy just going to stay.*
+- *Idle state is important because enemy has to wait in idle if his attack is on cooldown and still in attack range.*
+
+![ezgif-4-4e727f973f](https://github.com/Hakansen4/Project_01/assets/62704352/cfb402ce-d565-4f2a-ac4d-0e8ec53d4a06)
+
+
+### Enemy Patrol(On Progress)
+- *On Enemy Patrol, our enemy patrolling if player is not in chase range.*
+- *Enemy Patrol is going to different by the enemy type. Some of the enemies are not going to patrol.*
+- *In the basic patrol state, enemy going to patrol between 2 point.*
+
+![ezgif-4-33c968ec9e](https://github.com/Hakansen4/Project_01/assets/62704352/749a1426-f806-4b4b-a56b-5298727f7034)
+
+
+### Enemy Chase(On Progress)
+- *On Enemy Chase, our enemy going to chase enemy till come close enough for attack. Of course if move away enough he will back to patrol state.*
+- *Enemy chase is could have different types. It is not finalized yet.*
+- *In the basic chase state, enemy move towards player.*
+
+![ezgif-4-2069a457ea](https://github.com/Hakansen4/Project_01/assets/62704352/8754ad7a-7daf-4374-b6a6-f3630441216a)
+
+
+### Enemy Attack(On Progress)
+- *On the Enemy Attack, our enemy animate his attack animation.*
+- *There will be different attack types(like range attack and melee attack).*
+- *In the basic attack state, enemy animate his attack animation.*
+
+![ezgif-4-5c0280ae28](https://github.com/Hakansen4/Project_01/assets/62704352/313261d7-8994-4f1e-991e-fb3b0d2b3963)
+
 
 # Currently Working On Parts
 
-## Enemy Works
-- *There will be different kind of enemies but all Enemies going to created with same basis.*
-- *All enemies going to have Patrol, Chase and Attack states. Difference between enemies going to determine this states types.*
+## Combat Works
+- *In the combat works I will be focused to Player's and Standard Enemy's combat works.*
+- *All enemy and player's attack animation and state works have done. This section is just about make theri attack animation real.*
+- *Enemy and player health control going to add.*
+- *Enemy and player combat controller going to add.*
 
-### Enemy Patrol
-- *For now there will be 2 type of Patrol state. First one is constantly moving between left and right patrol border. Second one is just standing still.*
-- *On the patrol state, enemy going to wait Player to come close enough.*
-- *After player come close enough, enemy going to chase state.*
-### Enemy Chase
-- *On the chase state, enemy going to chase player until come close enough*
-- *Some of the enemies not going to chase player. So this kind of enemies going to just pass this state.*
-- *After enemy come close enough, enemy going to Attack state.*
-### Enemy Attack
-- *On the attack State, enemy going to use his attack animations.*
+### Player Combat
+- *In player combat I will make Explode real. When player use explode, all the enemies which effected from explode will be pushed according to the player's own position.*
+- *Explode not going to give damage to the enemy.*
+### Enemy Combat
+- *In enemy combat, I will work on range and melee combat system.*
+- *With this attacks, player will receive damage.*
+### Environment Combat
+- *In environment combat, player and enemy will receive damage. Sometimes both of them sometimes just one of them.*
+- *Environment combat will be like traps. Player going to try push enemies to the traps.*
