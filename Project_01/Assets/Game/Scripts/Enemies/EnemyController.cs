@@ -8,6 +8,10 @@ using static UnityEditor.VersionControl.Asset;
 public class EnemyController : MonoBehaviour
 {
     #region STRINGS
+    private const string PATROL = "Patrol";
+    private const string ATTACK = "Attack";
+    private const string CHASE = "Chase";
+
     private const string COMPONENTS = "COMPONENTS";
     private const string STATES = "STATES";
     #endregion
@@ -16,9 +20,11 @@ public class EnemyController : MonoBehaviour
     [FoldoutGroup(STATES), SerializeField] private State _patrolState;
     [FoldoutGroup(STATES), SerializeField] private State _chaseState;
     [FoldoutGroup(STATES), SerializeField] private State _attackState;
+    [FoldoutGroup(STATES), SerializeField] private State _idleState;
     #endregion
     #region Components
     [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
+    [FoldoutGroup(COMPONENTS), SerializeField] private Animator _animator;
     [FoldoutGroup(COMPONENTS), SerializeField] private Transform _leftBorder;
     [FoldoutGroup(COMPONENTS), SerializeField] private Transform _rightBorder;
     [FoldoutGroup(COMPONENTS), SerializeField] private Transform _player;
@@ -29,8 +35,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _chaseRange;
     [SerializeField] private float _attackRange;
+    [SerializeField] private float _attackCooldown;
 
     private float range = 0;
+    private float attackTimer = 0;
     #endregion
 
     private void Awake()
@@ -47,8 +55,15 @@ public class EnemyController : MonoBehaviour
 
         if(range <= _attackRange)
         {
-            if(_stateMachine.CurrentState != _attackState)
+            if(_stateMachine.CurrentState != _attackState   &&  Time.time - attackTimer >= _attackCooldown)
+            {
                 _stateMachine.TransitionTo(_attackState);
+                attackTimer = Time.time;
+            }
+            else if(_stateMachine.CurrentState != _idleState)
+            {
+                _stateMachine.TransitionTo(_idleState);
+            }
         }
         else if (range <= _chaseRange && _stateMachine.CurrentState != _attackState)
         {
@@ -60,9 +75,51 @@ public class EnemyController : MonoBehaviour
             if (_stateMachine.CurrentState != _patrolState)
                 _stateMachine.TransitionTo(_patrolState);
         }
+        else if(_stateMachine.CurrentState != _attackState)
+        {
+            if(_stateMachine.CurrentState != _idleState)
+                _stateMachine.TransitionTo(_idleState);
+        }
+    }
+
+    public void SetAnimation(EnemyAnims animation)
+    {
+        switch (animation)
+        {
+            case EnemyAnims.Attack:
+                _animator.SetTrigger(ATTACK);
+                break;
+
+        }
+    }
+    public void SetAnimation(EnemyAnims animation,bool isTrue)
+    {
+        switch (animation)
+        {
+            case EnemyAnims.Attack:
+                _animator.SetBool(ATTACK, isTrue);
+                break;
+
+            case EnemyAnims.Patrol:
+                _animator.SetBool(PATROL, isTrue);
+                break;
+
+            case EnemyAnims.Chase:
+                _animator.SetBool(CHASE, isTrue);
+                break;
+            case EnemyAnims.Idle:
+                _animator.SetBool(PATROL, !isTrue);
+                break;
+
+        }
+    }
+    public void ResetStates()
+    {
+        if (_stateMachine.CurrentState != _idleState)
+            _stateMachine.TransitionTo(_idleState);
     }
 }
-public enum EnemyState
+public enum EnemyAnims
 {
-    Patrol
+    Idle,Patrol,Chase,Attack
 }

@@ -10,10 +10,16 @@ public class AttackE : State
     protected override void OnEnter()
     {
         _controller.movement.Stop();
+        _controller.SetAnimation(EnemyAnims.Attack);
     }
 
     protected override void OnExit()
     {
-        Debug.Log(_controller.transform.position.x);
+    }
+
+    //Calling from animation
+    public void AttackFinished()
+    {
+        _controller.ResetStates();
     }
 }

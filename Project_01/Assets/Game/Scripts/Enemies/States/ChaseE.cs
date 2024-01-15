@@ -8,11 +8,12 @@ public class ChaseE : State
     [SerializeField] private EnemyController _controller;
     protected override void OnEnter()
     {
-        Debug.Log("AAA");
+        _controller.SetAnimation(EnemyAnims.Chase, true);
     }
 
     protected override void OnExit()
     {
+        _controller.SetAnimation(EnemyAnims.Chase, false);
     }
     private void FixedUpdate()
     {
