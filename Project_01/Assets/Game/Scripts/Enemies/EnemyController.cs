@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     private const string PATROL = "Patrol";
     private const string ATTACK = "Attack";
     private const string CHASE = "Chase";
+    private const string HITTED = "Hitted";
 
     private const string COMPONENTS = "COMPONENTS";
     private const string STATES = "STATES";
@@ -21,6 +22,7 @@ public class EnemyController : MonoBehaviour
     [FoldoutGroup(STATES), SerializeField] protected State _chaseState;
     [FoldoutGroup(STATES), SerializeField] protected State _attackState;
     [FoldoutGroup(STATES), SerializeField] protected State _idleState;
+    [FoldoutGroup(STATES), SerializeField] protected State _hittedState;
     #endregion
     #region Components
     [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
@@ -55,7 +57,7 @@ public class EnemyController : MonoBehaviour
     {
         range = Mathf.Abs(_player.position.x - transform.position.x);
 
-        if (_stateMachine.CurrentState == _attackState)
+        if (_stateMachine.CurrentState == _hittedState || _stateMachine.CurrentState == _attackState)
             return;
 
         if(range <= _attackRange)
@@ -115,6 +117,9 @@ public class EnemyController : MonoBehaviour
             case EnemyAnims.Idle:
                 _animator.SetBool(PATROL, !isTrue);
                 break;
+            case EnemyAnims.Hitted:
+                _animator.SetBool(HITTED, isTrue);
+                break;
 
         }
     }
@@ -123,6 +128,11 @@ public class EnemyController : MonoBehaviour
         if (_stateMachine.CurrentState != _idleState)
             _stateMachine.TransitionTo(_idleState);
     }
+    public void HittedState()
+    {
+        if (_stateMachine.CurrentState != _hittedState)
+            _stateMachine.TransitionTo(_hittedState);
+    }
     public void Push(Vector2 value)
     {
         _rigidbody.AddForce(value);
@@ -130,5 +140,5 @@ public class EnemyController : MonoBehaviour
 }
 public enum EnemyAnims
 {
-    Idle,Patrol,Chase,Attack
+    Idle,Patrol,Chase,Attack,Hitted
 }

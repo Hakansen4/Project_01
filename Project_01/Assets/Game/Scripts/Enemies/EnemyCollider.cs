@@ -11,6 +11,7 @@ public class EnemyCollider : MonoBehaviour, IHittable
         {
             case HitType.Push:
                 _controller.Push(new Vector2(value, value));
+                _controller.HittedState();
                 break;
             case HitType.Damage:
                 break;

@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 69113110}
   - component: {fileID: 69113113}
   - component: {fileID: 69113114}
+  - component: {fileID: 69113116}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -219,6 +220,7 @@ MonoBehaviour:
   - {fileID: 69113110}
   - {fileID: 69113113}
   - {fileID: 1471361698}
+  - {fileID: 69113116}
 --- !u!114 &69113113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +264,7 @@ MonoBehaviour:
   _chaseState: {fileID: 69113113}
   _attackState: {fileID: 1471361698}
   _idleState: {fileID: 69113114}
+  _hittedState: {fileID: 69113116}
   _rigidbody: {fileID: 69113109}
   _animator: {fileID: 1471361697}
   _leftBorder: {fileID: 656190143}
@@ -271,6 +274,19 @@ MonoBehaviour:
   _chaseRange: 3
   _attackRange: 1
   _attackCooldown: 3
+--- !u!114 &69113116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69113107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0f4a6e109a111459ea0a3d7f123359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 69113115}
 --- !u!1 &298096207
 GameObject:
   m_ObjectHideFlags: 0
