@@ -18,6 +18,7 @@ public class AttackP : State
     public void EXPLODE()
     {
         _controller.Combat.Explode();
+        _controller.Combat.PushEnemies(_controller.hitDetect.GetHittedEnemies());
     }
 
     //Calling from animation

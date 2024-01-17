@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     [FoldoutGroup(COMPONENTS)]  public LedgeDetection LedgeDetect;
     [FoldoutGroup(COMPONENTS)]  public PlayerMovement Movement;
     [FoldoutGroup(COMPONENTS)]  public PlayerCombat Combat;
+    [FoldoutGroup(COMPONENTS)]  public ExplodeHitDetection hitDetect;
     #endregion
     #region Stats
     private const float GRAVITY = 1.5f;

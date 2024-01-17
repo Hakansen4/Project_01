@@ -22,6 +22,14 @@ public class PlayerCombat
         rb.AddForce(Vector2.up * power);
         explodeTime = Time.time;
     }
+    public void PushEnemies(Collider2D[] enemies)
+    {
+
+        foreach(var enemy in enemies)
+        {
+            enemy.GetComponent<IHittable>()?.Hit(HitType.Push, 200);
+        }
+    }
     public bool CanExplode()
     {
         if (Time.time - explodeTime > waitTime)
