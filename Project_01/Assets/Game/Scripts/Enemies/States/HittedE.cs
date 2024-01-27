@@ -5,6 +5,8 @@ using Ambrosia.StateMachine;
 
 public class HittedE : State
 {
+    private const int stateSecond = 2;
+
     [SerializeField] private EnemyController _controller;
     protected override void OnEnter()
     {
@@ -19,7 +21,7 @@ public class HittedE : State
 
     private IEnumerator EndState()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(stateSecond);
         _controller.ResetStates();
     }
 }

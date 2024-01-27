@@ -16,7 +16,7 @@ public class Test_PlayerCombat
         GameObject gm = new GameObject();
         gm.AddComponent<Rigidbody2D>();
 
-        PlayerCombat combat = new PlayerCombat(power, waitTime, gm.GetComponent<Rigidbody2D>());
+        PlayerCombat combat = new PlayerCombat(power, waitTime, gm.GetComponent<Rigidbody2D>(), gm.transform);
         combat.Explode();
 
         yield return new WaitForSeconds(waitTime / 2);
@@ -35,7 +35,7 @@ public class Test_PlayerCombat
         GameObject gm = new GameObject();
         gm.AddComponent<Rigidbody2D>();
 
-        PlayerCombat combat = new PlayerCombat(power, waitTime, gm.GetComponent<Rigidbody2D>());
+        PlayerCombat combat = new PlayerCombat(power, waitTime, gm.GetComponent<Rigidbody2D>(), gm.transform);
         combat.Explode();
         yield return new WaitForSeconds(waitTime / 2);
         Assert.AreEqual(false, combat.CanExplode());

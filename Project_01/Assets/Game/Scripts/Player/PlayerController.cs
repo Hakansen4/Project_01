@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Movement = new PlayerMovement(_runningSpeed, _rigidbody, transform, _jumpPower);
-        Combat = new PlayerCombat(_attackPower, _attackCooldown, _rigidbody);
+        Combat = new PlayerCombat(_attackPower, _attackCooldown, _rigidbody, transform);
     }
     private void Update()
     {

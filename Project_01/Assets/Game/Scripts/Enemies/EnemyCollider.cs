@@ -5,18 +5,9 @@ using UnityEngine;
 public class EnemyCollider : MonoBehaviour, IHittable
 {
     [SerializeField] private EnemyController _controller;
-    public void Hit(HitType type, float value)
+    public void Hit(float power, Vector2 direction)
     {
-        switch (type)
-        {
-            case HitType.Push:
-                _controller.Push(new Vector2(value, value));
-                _controller.HittedState();
-                break;
-            case HitType.Damage:
-                break;
-            default:
-                break;
-        }
+        _controller.Push(direction * power);
+        _controller.HittedState();
     }
 }

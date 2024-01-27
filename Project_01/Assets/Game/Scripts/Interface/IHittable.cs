@@ -1,8 +1,6 @@
+using UnityEngine;
+
 public interface IHittable
 {
-    void Hit(HitType type, float value);
-}
-public enum HitType
-{
-    Push,Damage
+    void Hit(float power, Vector2 direction);
 }
