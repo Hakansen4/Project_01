@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     private const string CHASE = "Chase";
     private const string HITTED = "Hitted";
 
-    private const string COMPONENTS = "COMPONENTS";
+    protected const string COMPONENTS = "COMPONENTS";
     private const string STATES = "STATES";
     #endregion
     #region States
@@ -25,18 +25,15 @@ public class EnemyController : MonoBehaviour
     [FoldoutGroup(STATES), SerializeField] protected State _hittedState;
     #endregion
     #region Components
-    [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
     [FoldoutGroup(COMPONENTS), SerializeField] private Animator _animator;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _leftBorder;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _rightBorder;
 
+    [FoldoutGroup(COMPONENTS), SerializeField] protected Rigidbody2D _rigidbody;
     [FoldoutGroup(COMPONENTS), SerializeField] protected Transform _player;
 
     public EnemyMovement movement;
     #endregion
     #region Values
-    [SerializeField] private float _speed;
-
+    [SerializeField] protected float _speed;
     [SerializeField] protected float _chaseRange;
     [SerializeField] protected float _attackRange;
     [SerializeField] protected float _attackCooldown;
@@ -47,7 +44,7 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        movement = new EnemyMovement(transform,_player, _rigidbody, _speed, _leftBorder.position, _rightBorder.position);
+        SetUpComponents();
     }
     private void Update()
     {
@@ -88,7 +85,10 @@ public class EnemyController : MonoBehaviour
                 _stateMachine.TransitionTo(_idleState);
         }
     }
+    protected virtual void SetUpComponents()
+    {
 
+    }
     public void SetAnimation(EnemyAnims animation)
     {
         switch (animation)
