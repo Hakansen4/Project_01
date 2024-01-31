@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
     [FoldoutGroup(COMPONENTS), SerializeField] protected Transform _player;
 
     public EnemyMovement movement;
+    public EnemyCombat combat;
     #endregion
     #region Values
     [SerializeField] protected float _speed;
