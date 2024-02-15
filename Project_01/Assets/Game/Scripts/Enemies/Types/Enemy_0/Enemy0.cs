@@ -12,7 +12,7 @@ public class Enemy0 : EnemyController
     protected override void SetUpComponents()
     {
         movement = new EnemyMovement(transform, _player, _rigidbody, _speed, _leftBorder.position, _rightBorder.position);
-        combat = new EnemyCombat(transform, _attackSpawnPosition);
+        combat = new EnemyCombat(transform, _attackSpawnPosition, _attackObjectData);
     }
 
     protected override void CheckStateTransition()

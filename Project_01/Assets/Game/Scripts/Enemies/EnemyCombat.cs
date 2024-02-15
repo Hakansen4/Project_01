@@ -6,9 +6,9 @@ public class EnemyCombat
 {
     private IEnemyAttack attackComponent;
 
-    public EnemyCombat(Transform enemyTransform ,Transform attackPosition)
+    public EnemyCombat(Transform enemyTransform ,Transform attackPosition, EnemyAttackObject attackObjectData)
     {
-        attackComponent = new EnemyRangeAttack(attackPosition, enemyTransform);
+        attackComponent = new EnemyRangeAttack(attackPosition, enemyTransform, attackObjectData);
     }
 
     public void Attack()

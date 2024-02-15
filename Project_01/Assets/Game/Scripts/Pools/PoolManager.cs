@@ -25,9 +25,10 @@ public class PoolManager : MonoBehaviour
         poolAttackObject = new ObjectPool<E_AttackObject>(_sizeOfAttackObjectPool, _attackObject);
     }
 
-    public static void SetEnemyAttackObject(Vector3 createPosition, int direction)
+    public static void SetEnemyAttackObject(Vector3 createPosition, int direction, EnemyAttackObject attackObject)
     {
         var obj = poolAttackObject.GetPooledObject();
+        obj.SetupAttackObject(attackObject);
         obj.SetCreater(poolAttackObject);
         obj.SetDirection(direction);
         obj.transform.position = createPosition;

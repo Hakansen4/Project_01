@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private const string WALLSLIDE = "WallSlide";
     private const string WALLSLIDET = "WallSlideT";
     private const string LEDGECLIMB = "LedgeClimb";
+    private const string HITTED = "Hitted";
 
     private const string STATES = "STATES";
     private const string COMPONENTS = "COMPONENTS";
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [FoldoutGroup(STATES), SerializeField] private State _pushState;
     [FoldoutGroup(STATES), SerializeField] private State _wallSlideState;
     [FoldoutGroup(STATES), SerializeField] private State _ledgeClimbState;
+    [FoldoutGroup(STATES), SerializeField] private State _hittedState;
     #endregion
     #region Components
     [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
@@ -36,25 +38,30 @@ public class PlayerController : MonoBehaviour
 
     [FoldoutGroup(COMPONENTS)]  public PlayerCollider Collide;
     [FoldoutGroup(COMPONENTS)]  public LedgeDetection LedgeDetect;
-    [FoldoutGroup(COMPONENTS)]  public PlayerMovement Movement;
-    [FoldoutGroup(COMPONENTS)]  public PlayerCombat Combat;
     [FoldoutGroup(COMPONENTS)]  public ExplodeHitDetection hitDetect;
+
+    public PlayerMovement Movement;
+    public PlayerCombat Combat;
+    public PlayerHealth Health;
     #endregion
     #region Stats
     private const float GRAVITY = 1.5f;
 
+    [SerializeField] private float _health;
     [SerializeField] private float _runningSpeed;
     [SerializeField] private float _jumpPower;
     [SerializeField] private float _attackPower;
     [SerializeField] private float _attackCooldown;
+    [SerializeField] private float _pushBackPower;
 
     #endregion
 
     private bool canWallSlide = true;
     private void Awake()
     {
-        Movement = new PlayerMovement(_runningSpeed, _rigidbody, transform, _jumpPower);
+        Movement = new PlayerMovement(_runningSpeed, _rigidbody, transform, _jumpPower, _pushBackPower);
         Combat = new PlayerCombat(_attackPower, _attackCooldown, _rigidbody, transform);
+        Health = new PlayerHealth(_health);
     }
     private void Update()
     {
@@ -125,37 +132,43 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Idle:
                 if(_stateMachine.CurrentState != _idleState && _stateMachine.CurrentState != _jumpState &&
                     _stateMachine.CurrentState != _combatState && _stateMachine.CurrentState != _pushState &&
-                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState)
+                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState &&
+                    _stateMachine.CurrentState != _hittedState)
                     return true;
                 break;
             case PlayerState.Move:
                 if (_stateMachine.CurrentState != _moveState && _stateMachine.CurrentState != _jumpState &&
                     _stateMachine.CurrentState != _combatState && _stateMachine.CurrentState != _pushState &&
-                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState)
+                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState &&
+                    _stateMachine.CurrentState != _hittedState)
                     return true;
                 break;
             case PlayerState.Jump:
                 if(_stateMachine.CurrentState != _jumpState &&  _stateMachine.CurrentState != _combatState &&
-                    _stateMachine.CurrentState != _pushState && _stateMachine.CurrentState != _ledgeClimbState)
+                    _stateMachine.CurrentState != _pushState && _stateMachine.CurrentState != _ledgeClimbState &&
+                    _stateMachine.CurrentState != _hittedState)
                     return true;
                 break;
             case PlayerState.Combat:
                 if(_stateMachine.CurrentState != _combatState && Combat.CanExplode() && _stateMachine.CurrentState != _pushState &&
-                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState)
+                    _stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _ledgeClimbState &&
+                    _stateMachine.CurrentState != _hittedState)
                     return true;
                 break;
             case PlayerState.Push:
-                if(_stateMachine.CurrentState == _idleState || _stateMachine.CurrentState == _moveState)
+                if((_stateMachine.CurrentState == _idleState || _stateMachine.CurrentState == _moveState) &&
+                    _stateMachine.CurrentState != _hittedState)
                     return true;
                 break;
             case PlayerState.WallSlide:
                 if (_stateMachine.CurrentState != _wallSlideState && _stateMachine.CurrentState != _combatState &&
                     _stateMachine.CurrentState != _pushState && _stateMachine.CurrentState != _ledgeClimbState &&
-                    canWallSlide)
+                    canWallSlide && _stateMachine.CurrentState != _hittedState)
                     return true;
                 break;
             case PlayerState.LedgeClimb:
-                if(_stateMachine.CurrentState != _ledgeClimbState && _stateMachine.CurrentState != _pushState)
+                if(_stateMachine.CurrentState != _ledgeClimbState && _stateMachine.CurrentState != _pushState &&
+                    _stateMachine.CurrentState != _hittedState)
                    return true;
                 break;
         }
@@ -178,6 +191,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case PLayerAnims.LedgeClimb:
                 _animator.SetTrigger(LEDGECLIMB);
+                break;
+            case PLayerAnims.Hitted:
+                _animator.SetTrigger(HITTED);
                 break;
         }
     }
@@ -220,13 +236,18 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.velocity = Vector2.zero;
     }
-    
     public void WallToJump()
     {
         StopCoroutine(ResetWallSlide());
         _stateMachine.TransitionTo(_jumpState);
         canWallSlide = false;
         StartCoroutine(ResetWallSlide());
+    }
+    public void GotHit(float damage)
+    {
+        Health.TakeDamage(damage);
+        if (_stateMachine.CurrentState != _hittedState)
+            _stateMachine.TransitionTo(_hittedState);
     }
     private IEnumerator ResetWallSlide()
     {
@@ -236,9 +257,9 @@ public class PlayerController : MonoBehaviour
 }
 public enum PlayerState
 {
-    Idle,Move,Jump,Combat,Push,WallSlide,LedgeClimb
+    Idle,Move,Jump,Combat,Push,WallSlide,LedgeClimb,Hitted
 }
 public enum PLayerAnims
 {
-    Run,Jump,Combat,Push,Pull,WallSlide,LedgeClimb
+    Run,Jump,Combat,Push,Pull,WallSlide,LedgeClimb,Hitted
 }

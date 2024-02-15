@@ -270,8 +270,9 @@ MonoBehaviour:
   _player: {fileID: 1524808616}
   _speed: 300
   _chaseRange: 3
-  _attackRange: 1
+  _attackRange: 2
   _attackCooldown: 3
+  _attackObjectData: {fileID: 11400000, guid: 91698b2b9a576424986bec20af146836, type: 2}
   _leftBorder: {fileID: 656190143}
   _rightBorder: {fileID: 1897673038}
   _attackSpawnPosition: {fileID: 1683753773}
@@ -739,6 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c5530bed774c84e91a6ef5d7003ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _controller: {fileID: 1524808617}
 --- !u!1 &1127837224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,15 +1183,18 @@ MonoBehaviour:
   _pushState: {fileID: 1524808623}
   _wallSlideState: {fileID: 1524808625}
   _ledgeClimbState: {fileID: 1943121057}
+  _hittedState: {fileID: 1943121058}
   _rigidbody: {fileID: 1524808618}
   _animator: {fileID: 1943121055}
   Collide: {fileID: 684530824}
   LedgeDetect: {fileID: 1185501821}
   hitDetect: {fileID: 479845243}
+  _health: 5
   _runningSpeed: 400
   _jumpPower: 350
   _attackPower: 500
   _attackCooldown: 2
+  _pushBackPower: 10
 --- !u!50 &1524808618
 Rigidbody2D:
   serializedVersion: 4
@@ -1203,7 +1208,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1.5
   m_Material: {fileID: 0}
@@ -1249,6 +1254,7 @@ MonoBehaviour:
   - {fileID: 1524808623}
   - {fileID: 1524808625}
   - {fileID: 1943121057}
+  - {fileID: 1943121058}
 --- !u!114 &1524808621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,6 +1589,7 @@ GameObject:
   - component: {fileID: 1943121053}
   - component: {fileID: 1943121054}
   - component: {fileID: 1943121055}
+  - component: {fileID: 1943121058}
   - component: {fileID: 1943121057}
   - component: {fileID: 1943121056}
   m_Layer: 0
@@ -1709,6 +1716,19 @@ MonoBehaviour:
   _controller: {fileID: 1524808617}
   _startOffset: {x: 0.162, y: -0.07, z: 0}
   _endOffset: {x: 0.882, y: 1.079, z: 0}
+--- !u!114 &1943121058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943121052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47456f574a7148240a07fe265c633fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 1524808617}
 --- !u!1 &2031849808
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.VersionControl.Asset;
+using Ambrosia.EventBus;
 
 public class EnemyController : MonoBehaviour
 {
@@ -38,11 +38,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected float _chaseRange;
     [SerializeField] protected float _attackRange;
     [SerializeField] protected float _attackCooldown;
+    [SerializeField] protected EnemyAttackObject _attackObjectData;
 
     protected float range = 0;
     protected float attackTimer = 0;
     #endregion
-
     private void Awake()
     {
         SetUpComponents();
