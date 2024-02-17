@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ambrosia.EventBus;
 
-public class PlayerCollider : MonoBehaviour
+public class PlayerCollider : MonoBehaviour, IHittable
 {
     private const string GROUND = "Ground";
     private const string WALL = "Wall";
@@ -99,5 +99,10 @@ public class PlayerCollider : MonoBehaviour
     public bool CheckHittedFromLeft()
     {
         return isHittedFromLeft;
+    }
+
+    public void Hit(float power, Vector2 direction, float damage)
+    {
+        _controller.GotHit(damage);
     }
 }

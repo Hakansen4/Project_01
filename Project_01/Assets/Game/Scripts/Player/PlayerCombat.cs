@@ -40,7 +40,7 @@ public class PlayerCombat
         {
             float distance = Vector3.Distance(enemy.transform.position, transform.position);
             enemy.GetComponent<IHittable>()?.Hit(power * 1 / distance, 
-                                                GetHitDirection(enemy.transform.position, transform.position));
+                                                GetHitDirection(enemy.transform.position, transform.position),0);
         }
     }
     public bool CanExplode()

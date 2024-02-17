@@ -13,7 +13,7 @@ public class PatrolE : State
 
     protected override void OnExit()
     {
-
+        _controller.SetAnimation(EnemyAnims.Patrol, false);
     }
     private void FixedUpdate()
     {

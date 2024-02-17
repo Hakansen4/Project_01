@@ -11,8 +11,10 @@ public class PlayerHealth
     {
         this.health = health;
     }
-    public void TakeDamage(float value)
+
+    public void Hit(float damage)
     {
-        Debug.Log(value + " Damage Taken");
+        //Not pushing right now...
+        Debug.Log(damage + " Damage Taken");
     }
 }

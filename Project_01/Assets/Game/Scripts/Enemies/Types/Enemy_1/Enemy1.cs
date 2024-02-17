@@ -3,21 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy0 : EnemyController
+public class Enemy1 : EnemyController
 {
     [FoldoutGroup(COMPONENTS), SerializeField] private Transform _leftBorder;
     [FoldoutGroup(COMPONENTS), SerializeField] private Transform _rightBorder;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _attackSpawnPosition;
-    [SerializeField] protected EnemyAttackObject _attackObjectData;
+    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _attackPosition;
 
+    [SerializeField] private float _radiusRange;
+    [SerializeField] private LayerMask _hitMask;
     protected override void SetUpComponents()
     {
         movement = new EnemyMovement(transform, _player, _rigidbody, _speed, _leftBorder.position, _rightBorder.position);
-        combat = new EnemyCombat(transform, _attackSpawnPosition, _attackObjectData);
+        combat = new EnemyCombat(_attackPosition, 1, _radiusRange, _hitMask);
     }
-
-    protected override void CheckStateTransition()
+    private void OnDrawGizmos()
     {
-        base.CheckStateTransition();
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_attackPosition.position, _radiusRange);
     }
 }

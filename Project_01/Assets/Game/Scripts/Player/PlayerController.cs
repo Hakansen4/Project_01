@@ -245,7 +245,7 @@ public class PlayerController : MonoBehaviour
     }
     public void GotHit(float damage)
     {
-        Health.TakeDamage(damage);
+        Health.Hit(damage);
         if (_stateMachine.CurrentState != _hittedState)
             _stateMachine.TransitionTo(_hittedState);
     }
