@@ -20,10 +20,11 @@ public class EnemyMeleeAttack : IEnemyAttack
     public void AttackAction()
     {
         var attackedObjects = Physics2D.OverlapCircleAll(attackPos.position, rangeRadius, hitMasks);
-        
+        Vector2 direction = Vector2.zero;
         foreach (var attackedObject in attackedObjects)
         {
-            attackedObject.GetComponent<IHittable>().Hit(0, Vector2.zero, damage);
+            direction = (attackedObject.transform.position - attackPos.position).normalized;
+            attackedObject.GetComponent<IHittable>().Hit(damage, direction, damage);
         }
     }
 }

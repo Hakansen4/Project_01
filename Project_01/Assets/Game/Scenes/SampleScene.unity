@@ -2327,7 +2327,7 @@ MonoBehaviour:
   _player: {fileID: 1524808616}
   _speed: 300
   _chaseRange: 3
-  _attackRange: 1
+  _attackRange: 1.5
   _attackCooldown: 3
   _leftBorder: {fileID: 2265525525358633566}
   _rightBorder: {fileID: 7340066510517716408}

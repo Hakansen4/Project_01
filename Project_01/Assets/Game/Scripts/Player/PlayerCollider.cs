@@ -7,7 +7,6 @@ public class PlayerCollider : MonoBehaviour, IHittable
 {
     private const string GROUND = "Ground";
     private const string WALL = "Wall";
-    private const string ENEMY_ATTACK_OBJECT = "EnemyAttackObject";
 
     [SerializeField] private PlayerController _controller;
 
@@ -103,6 +102,12 @@ public class PlayerCollider : MonoBehaviour, IHittable
 
     public void Hit(float power, Vector2 direction, float damage)
     {
+        if (direction.x > 0)
+            isHittedFromLeft = true;
+        else
+            isHittedFromLeft = false;
+
+
         _controller.GotHit(damage);
     }
 }
