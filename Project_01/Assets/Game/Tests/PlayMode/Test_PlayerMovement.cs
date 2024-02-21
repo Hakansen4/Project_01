@@ -15,7 +15,7 @@ public class Test_PlayerMovement
         float jumpPower = 10.0f;
 
         PlayerMovement movement = new PlayerMovement(runningSpeed, gm.GetComponent<Rigidbody2D>(),
-            gm.GetComponent<Transform>(), jumpPower);
+            gm.GetComponent<Transform>(), jumpPower,0);
 
 
         movement.Run();
@@ -37,7 +37,7 @@ public class Test_PlayerMovement
         float pushSpeed = 10.0f;
 
         PlayerMovement movement = new PlayerMovement(runningSpeed, gm.GetComponent<Rigidbody2D>(),
-            gm.GetComponent<Transform>(), jumpPower);
+            gm.GetComponent<Transform>(), jumpPower, 0);
 
         movement.PushMove(pushSpeed);
 
@@ -57,7 +57,7 @@ public class Test_PlayerMovement
         float jumpPower = 10.0f;
 
         PlayerMovement movement = new PlayerMovement(runningSpeed, gm.GetComponent<Rigidbody2D>(),
-            gm.GetComponent<Transform>(), jumpPower);
+            gm.GetComponent<Transform>(), jumpPower, 0);
 
         movement.Jump();
 

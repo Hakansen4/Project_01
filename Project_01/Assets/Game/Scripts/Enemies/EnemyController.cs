@@ -3,38 +3,29 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.VersionControl.Asset;
+using Ambrosia.EventBus;
 
 public class EnemyController : MonoBehaviour
 {
-    #region STRINGS
-    private const string PATROL = "Patrol";
-    private const string ATTACK = "Attack";
-    private const string CHASE = "Chase";
-
-    private const string COMPONENTS = "COMPONENTS";
-    private const string STATES = "STATES";
-    #endregion
     #region States
-    [FoldoutGroup(STATES), SerializeField] protected StateMachine _stateMachine;
-    [FoldoutGroup(STATES), SerializeField] protected State _patrolState;
-    [FoldoutGroup(STATES), SerializeField] protected State _chaseState;
-    [FoldoutGroup(STATES), SerializeField] protected State _attackState;
-    [FoldoutGroup(STATES), SerializeField] protected State _idleState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected StateMachine _stateMachine;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _patrolState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _chaseState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _attackState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _idleState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _hittedState;
     #endregion
     #region Components
-    [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Animator _animator;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _leftBorder;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _rightBorder;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Animator _animator;
 
-    [FoldoutGroup(COMPONENTS), SerializeField] protected Transform _player;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] protected Rigidbody2D _rigidbody;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] protected Transform _player;
 
     public EnemyMovement movement;
+    public EnemyCombat combat;
     #endregion
     #region Values
-    [SerializeField] private float _speed;
-
+    [SerializeField] protected float _speed;
     [SerializeField] protected float _chaseRange;
     [SerializeField] protected float _attackRange;
     [SerializeField] protected float _attackCooldown;
@@ -42,10 +33,9 @@ public class EnemyController : MonoBehaviour
     protected float range = 0;
     protected float attackTimer = 0;
     #endregion
-
     private void Awake()
     {
-        movement = new EnemyMovement(transform,_player, _rigidbody, _speed, _leftBorder.position, _rightBorder.position);
+        SetUpComponents();
     }
     private void Update()
     {
@@ -55,7 +45,7 @@ public class EnemyController : MonoBehaviour
     {
         range = Mathf.Abs(_player.position.x - transform.position.x);
 
-        if (_stateMachine.CurrentState == _attackState)
+        if (_stateMachine.CurrentState == _hittedState || _stateMachine.CurrentState == _attackState)
             return;
 
         if(range <= _attackRange)
@@ -86,13 +76,16 @@ public class EnemyController : MonoBehaviour
                 _stateMachine.TransitionTo(_idleState);
         }
     }
+    protected virtual void SetUpComponents()
+    {
 
+    }
     public void SetAnimation(EnemyAnims animation)
     {
         switch (animation)
         {
             case EnemyAnims.Attack:
-                _animator.SetTrigger(ATTACK);
+                _animator.SetTrigger(GlobalStrings.E_ATTACK);
                 break;
 
         }
@@ -102,18 +95,21 @@ public class EnemyController : MonoBehaviour
         switch (animation)
         {
             case EnemyAnims.Attack:
-                _animator.SetBool(ATTACK, isTrue);
+                _animator.SetBool(GlobalStrings.E_ATTACK, isTrue);
                 break;
 
             case EnemyAnims.Patrol:
-                _animator.SetBool(PATROL, isTrue);
+                _animator.SetBool(GlobalStrings.E_PATROL, isTrue);
                 break;
 
             case EnemyAnims.Chase:
-                _animator.SetBool(CHASE, isTrue);
+                _animator.SetBool(GlobalStrings.E_CHASE, isTrue);
                 break;
             case EnemyAnims.Idle:
-                _animator.SetBool(PATROL, !isTrue);
+                _animator.SetBool(GlobalStrings.E_PATROL, !isTrue);
+                break;
+            case EnemyAnims.Hitted:
+                _animator.SetBool(GlobalStrings.E_HITTED, isTrue);
                 break;
 
         }
@@ -123,8 +119,17 @@ public class EnemyController : MonoBehaviour
         if (_stateMachine.CurrentState != _idleState)
             _stateMachine.TransitionTo(_idleState);
     }
+    public void HittedState()
+    {
+        if (_stateMachine.CurrentState != _hittedState)
+            _stateMachine.TransitionTo(_hittedState);
+    }
+    public void Push(Vector2 value)
+    {
+        _rigidbody.AddForce(value);
+    }
 }
 public enum EnemyAnims
 {
-    Idle,Patrol,Chase,Attack
+    Idle,Patrol,Chase,Attack,Hitted
 }

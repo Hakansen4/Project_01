@@ -18,6 +18,12 @@ public class AttackE : State
     }
 
     //Calling from animation
+    public void Attack()
+    {
+        _controller.combat.Attack();
+    }
+
+    //Calling from animation
     public void AttackFinished()
     {
         _controller.ResetStates();

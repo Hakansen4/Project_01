@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Wall
+  - EnemyAttackObject
   layers:
   - Default
   - TransparentFX

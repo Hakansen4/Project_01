@@ -4,11 +4,9 @@ using UnityEngine;
 
 public static class InputManager
 {
-    private const string HORIZONTAL = "Horizontal";
-
     public static bool CheckMoveInput()
     {
-        if(Input.GetAxis(HORIZONTAL) != 0)
+        if(Input.GetAxis(GlobalStrings.HORIZONTAL) != 0)
         {
             return true;
         }
@@ -40,5 +38,5 @@ public static class InputManager
         return false;
     }
     public static float GetHoriontalValue()
-    { return Input.GetAxis(HORIZONTAL); }
+    { return Input.GetAxis(GlobalStrings.HORIZONTAL); }
 }
