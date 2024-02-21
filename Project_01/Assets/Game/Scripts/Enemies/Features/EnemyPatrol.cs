@@ -24,11 +24,11 @@ public class EnemyPatrol
     {
         if (transform.position.x <= leftBorder.x && movement.moveDirection == AIMoveDirection.left)
         {
-            mono.StartCoroutine(movement.ChangeDirection(AIMoveDirection.right, 2));
+            mono.StartCoroutine(movement.ChangeDirection(AIMoveDirection.right, 0));
         }
         else if (transform.position.x >= rightBorder.x && movement.moveDirection == AIMoveDirection.right)
         {
-            mono.StartCoroutine(movement.ChangeDirection(AIMoveDirection.left, 2));
+            mono.StartCoroutine(movement.ChangeDirection(AIMoveDirection.left, 0));
         }
     }
 }

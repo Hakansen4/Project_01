@@ -6,39 +6,24 @@ using Sirenix.OdinInspector;
 
 public class PlayerController : MonoBehaviour
 {
-    #region STRINGS
-    private const string RUN = "Run";
-    private const string JUMP = "Jump";
-    private const string JUMPT = "JumpT";
-    private const string EXPLODE = "Explode";
-    private const string PUSH = "Push";
-    private const string PULL = "Pull";
-    private const string WALLSLIDE = "WallSlide";
-    private const string WALLSLIDET = "WallSlideT";
-    private const string LEDGECLIMB = "LedgeClimb";
-    private const string HITTED = "Hitted";
-
-    private const string STATES = "STATES";
-    private const string COMPONENTS = "COMPONENTS";
-    #endregion
     #region States
-    [FoldoutGroup(STATES), SerializeField] private StateMachine _stateMachine;
-    [FoldoutGroup(STATES), SerializeField] private State _idleState;
-    [FoldoutGroup(STATES), SerializeField] private State _moveState;
-    [FoldoutGroup(STATES), SerializeField] private State _jumpState;
-    [FoldoutGroup(STATES), SerializeField] private State _combatState;
-    [FoldoutGroup(STATES), SerializeField] private State _pushState;
-    [FoldoutGroup(STATES), SerializeField] private State _wallSlideState;
-    [FoldoutGroup(STATES), SerializeField] private State _ledgeClimbState;
-    [FoldoutGroup(STATES), SerializeField] private State _hittedState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private StateMachine _stateMachine;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private State _idleState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private State _moveState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private State _jumpState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private State _combatState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private State _pushState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private State _wallSlideState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private State _ledgeClimbState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] private State _hittedState;
     #endregion
     #region Components
-    [FoldoutGroup(COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Animator _animator;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Rigidbody2D _rigidbody;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Animator _animator;
 
-    [FoldoutGroup(COMPONENTS)]  public PlayerCollider Collide;
-    [FoldoutGroup(COMPONENTS)]  public LedgeDetection LedgeDetect;
-    [FoldoutGroup(COMPONENTS)]  public ExplodeHitDetection hitDetect;
+    [FoldoutGroup(GlobalStrings.COMPONENTS)]  public PlayerCollider Collide;
+    [FoldoutGroup(GlobalStrings.COMPONENTS)]  public LedgeDetection LedgeDetect;
+    [FoldoutGroup(GlobalStrings.COMPONENTS)]  public ExplodeHitDetection hitDetect;
 
     public PlayerMovement Movement;
     public PlayerCombat Combat;
@@ -179,21 +164,21 @@ public class PlayerController : MonoBehaviour
         switch (animation)
         {
             case PLayerAnims.Jump:
-                _animator.SetTrigger(JUMPT);
-                _animator.SetBool(JUMP, true);
+                _animator.SetTrigger(GlobalStrings.P_JUMPT);
+                _animator.SetBool(GlobalStrings.P_JUMP, true);
                 break;
             case PLayerAnims.Combat:
-                _animator.SetTrigger(EXPLODE);
+                _animator.SetTrigger(GlobalStrings.P_EXPLODE);
                 break;
             case PLayerAnims.WallSlide:
-                _animator.SetTrigger(WALLSLIDET);
-                _animator.SetBool(WALLSLIDE, true);
+                _animator.SetTrigger(GlobalStrings.P_WALLSLIDET);
+                _animator.SetBool(GlobalStrings.P_WALLSLIDE, true);
                 break;
             case PLayerAnims.LedgeClimb:
-                _animator.SetTrigger(LEDGECLIMB);
+                _animator.SetTrigger(GlobalStrings.P_LEDGECLIMB);
                 break;
             case PLayerAnims.Hitted:
-                _animator.SetTrigger(HITTED);
+                _animator.SetTrigger(GlobalStrings.P_HITTED);
                 break;
         }
     }
@@ -203,19 +188,19 @@ public class PlayerController : MonoBehaviour
         switch(animation)
         {
             case PLayerAnims.Run:
-                _animator.SetBool(RUN, isTrue);
+                _animator.SetBool(GlobalStrings.P_RUN, isTrue);
                 break;
             case PLayerAnims.Jump:
-                _animator.SetBool(JUMP, isTrue);
+                _animator.SetBool(GlobalStrings.P_JUMP, isTrue);
                 break;
             case PLayerAnims.Push:
-                _animator.SetBool(PUSH, isTrue);
+                _animator.SetBool(GlobalStrings.P_PUSH, isTrue);
                 break;
             case PLayerAnims.Pull:
-                _animator.SetBool(PULL, isTrue);
+                _animator.SetBool(GlobalStrings.P_PULL, isTrue);
                 break;
             case PLayerAnims.WallSlide:
-                _animator.SetBool(WALLSLIDE, isTrue);
+                _animator.SetBool(GlobalStrings.P_WALLSLIDE, isTrue);
                 break;
         }
     }

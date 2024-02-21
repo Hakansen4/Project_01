@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class E_AttackObject : MonoBehaviour, IPoolable
 {
-    #region Strings
-    private const string ENEMY_0 = "Enemy_0";
-    #endregion
-
     #region Components
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Rigidbody2D _rb;

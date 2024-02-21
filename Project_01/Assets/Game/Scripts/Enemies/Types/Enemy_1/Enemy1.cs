@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Enemy1 : EnemyController
 {
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _leftBorder;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _rightBorder;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _attackPosition;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Transform _leftBorder;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Transform _rightBorder;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Transform _attackPosition;
 
     [SerializeField] private float _radiusRange;
     [SerializeField] private LayerMask _hitMask;

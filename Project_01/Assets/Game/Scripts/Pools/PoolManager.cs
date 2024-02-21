@@ -5,13 +5,9 @@ using Sirenix.OdinInspector;
 
 public class PoolManager : MonoBehaviour
 {
-    #region Strings
-    private const string ENEMY_ATTACK = "Enemy_Attack";
-    #endregion
-
     #region EnemyAttack
-    [FoldoutGroup(ENEMY_ATTACK), SerializeField] private GameObject _attackObject;
-    [FoldoutGroup(ENEMY_ATTACK), SerializeField] private int _sizeOfAttackObjectPool;
+    [FoldoutGroup(GlobalStrings.Pool_EnemyAttack), SerializeField] private GameObject _attackObject;
+    [FoldoutGroup(GlobalStrings.Pool_EnemyAttack), SerializeField] private int _sizeOfAttackObjectPool;
 
     private static ObjectPool<E_AttackObject> poolAttackObject;
     #endregion

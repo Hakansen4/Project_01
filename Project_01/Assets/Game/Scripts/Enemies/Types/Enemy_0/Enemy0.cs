@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Enemy0 : EnemyController
 {
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _leftBorder;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _rightBorder;
-    [FoldoutGroup(COMPONENTS), SerializeField] private Transform _attackSpawnPosition;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Transform _leftBorder;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Transform _rightBorder;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Transform _attackSpawnPosition;
     [SerializeField] protected EnemyAttackObject _attackObjectData;
 
     protected override void SetUpComponents()

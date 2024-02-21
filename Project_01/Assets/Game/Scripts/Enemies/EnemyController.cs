@@ -7,28 +7,19 @@ using Ambrosia.EventBus;
 
 public class EnemyController : MonoBehaviour
 {
-    #region STRINGS
-    private const string PATROL = "Patrol";
-    private const string ATTACK = "Attack";
-    private const string CHASE = "Chase";
-    private const string HITTED = "Hitted";
-
-    protected const string COMPONENTS = "COMPONENTS";
-    private const string STATES = "STATES";
-    #endregion
     #region States
-    [FoldoutGroup(STATES), SerializeField] protected StateMachine _stateMachine;
-    [FoldoutGroup(STATES), SerializeField] protected State _patrolState;
-    [FoldoutGroup(STATES), SerializeField] protected State _chaseState;
-    [FoldoutGroup(STATES), SerializeField] protected State _attackState;
-    [FoldoutGroup(STATES), SerializeField] protected State _idleState;
-    [FoldoutGroup(STATES), SerializeField] protected State _hittedState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected StateMachine _stateMachine;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _patrolState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _chaseState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _attackState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _idleState;
+    [FoldoutGroup(GlobalStrings.STATES), SerializeField] protected State _hittedState;
     #endregion
     #region Components
-    [FoldoutGroup(COMPONENTS), SerializeField] private Animator _animator;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] private Animator _animator;
 
-    [FoldoutGroup(COMPONENTS), SerializeField] protected Rigidbody2D _rigidbody;
-    [FoldoutGroup(COMPONENTS), SerializeField] protected Transform _player;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] protected Rigidbody2D _rigidbody;
+    [FoldoutGroup(GlobalStrings.COMPONENTS), SerializeField] protected Transform _player;
 
     public EnemyMovement movement;
     public EnemyCombat combat;
@@ -94,7 +85,7 @@ public class EnemyController : MonoBehaviour
         switch (animation)
         {
             case EnemyAnims.Attack:
-                _animator.SetTrigger(ATTACK);
+                _animator.SetTrigger(GlobalStrings.E_ATTACK);
                 break;
 
         }
@@ -104,21 +95,21 @@ public class EnemyController : MonoBehaviour
         switch (animation)
         {
             case EnemyAnims.Attack:
-                _animator.SetBool(ATTACK, isTrue);
+                _animator.SetBool(GlobalStrings.E_ATTACK, isTrue);
                 break;
 
             case EnemyAnims.Patrol:
-                _animator.SetBool(PATROL, isTrue);
+                _animator.SetBool(GlobalStrings.E_PATROL, isTrue);
                 break;
 
             case EnemyAnims.Chase:
-                _animator.SetBool(CHASE, isTrue);
+                _animator.SetBool(GlobalStrings.E_CHASE, isTrue);
                 break;
             case EnemyAnims.Idle:
-                _animator.SetBool(PATROL, !isTrue);
+                _animator.SetBool(GlobalStrings.E_PATROL, !isTrue);
                 break;
             case EnemyAnims.Hitted:
-                _animator.SetBool(HITTED, isTrue);
+                _animator.SetBool(GlobalStrings.E_HITTED, isTrue);
                 break;
 
         }
