@@ -40,6 +40,13 @@ Just push them to deadly positions.*
 
 ![ezgif-2-cfe3992dbf](https://github.com/Hakansen4/Project_01/assets/62704352/530fa1d8-a785-4dba-ab0e-03e72a133235)
 
+### Player Hitted
+- *When player got hit, instantly get in hitted state.*
+- *When player in hitted state it animate hitted animation. After his hitted animation end player got out from hitted state.*
+- *Player also pushed according to attacker position.*
+
+![ezgif-1-ad22caf91d](https://github.com/Hakansen4/Project_01/assets/62704352/4df16326-8b19-46bb-87a7-aa3fb2dc8438)
+
 ## Enemy Works
 - *This section is about basic Enemy works.*
 - *Enemies can Idle, Patrol, Chase and Attack. All enemy types going to have this abilities but the type of this abilities going to change by enemy type.*
@@ -76,21 +83,49 @@ Just push them to deadly positions.*
 
 ![ezgif-4-5c0280ae28](https://github.com/Hakansen4/Project_01/assets/62704352/313261d7-8994-4f1e-991e-fb3b0d2b3963)
 
+### Enemy Hitted
+- *In the Enemy Hitted, our enemy animate his hitted animation.*
+- *When enemy got hit, instantly get in hitted state and wait till animation end.*
+- *Enemy also pushed according to attacker position.*
 
-# Currently Working On Parts
+![ezgif-4-6f3f04d3aa](https://github.com/Hakansen4/Project_01/assets/62704352/0edc803e-fca7-43cc-91fc-87312ae4cce0)
 
 ## Combat Works
-- *In the combat works I will be focused to Player's and Standard Enemy's combat works.*
-- *All enemy and player's attack animation and state works have done. This section is just about make theri attack animation real.*
-- *Enemy and player health control going to add.*
-- *Enemy and player combat controller going to add.*
+- *In the combat works you will see Player's and Standard Enemy's combat works.*
+- *Player's combat is about his explosion attack. When player use his explosion its not going to give damage to the enemies. It is going to push enemies according to their position to the explosion.*
+- *There are 2 enemy type for now. They are range and melee attack enemies. Range attack enemy create his attack objects in the attack animation, melee attack enemy check his melee attack range in the attack animation.*
 
 ### Player Combat
-- *In player combat I will make Explode real. When player use explode, all the enemies which effected from explode will be pushed according to the player's own position.*
-- *Explode not going to give damage to the enemy.*
+- *In the player combat player using his explosion.*
+- *Player has his attack range. This attack range is a circle which going to represent explosions hit range.*
+- *When player in attack state, In the exact moment of the explosion we will check that are there any enemy in the attack range.*
+- *If explosion hit the enemy then pushing the enemy according its position.*
+
+![ezgif-4-26d8c2e245](https://github.com/Hakansen4/Project_01/assets/62704352/4ff94b99-2893-4a28-ba8c-be005d3d9adf)
+
+
 ### Enemy Combat
-- *In enemy combat, I will work on range and melee combat system.*
-- *With this attacks, player will receive damage.*
+- *In the enemy combat I will talk about 2 different combat types. Melee and range combat.*
+#### Enemy Melee Combat
+- *In the enemy melee combat our enemy perform his attack and in the excact time of the attack animation we will check Is there any hittable object in the range. If there is we will attack them, give some damage and push towards attack side.*
+
+![ezgif-1-ad22caf91d](https://github.com/Hakansen4/Project_01/assets/62704352/4df16326-8b19-46bb-87a7-aa3fb2dc8438)
+
+- *Melee attack range is green cicle.*
+
+![image](https://github.com/Hakansen4/Project_01/assets/62704352/acc31e44-f074-40a9-a18e-8915aea6bc07)
+
+
+#### Enemy Range Combat
+- *In the enemy range combat our enemy perform his attack and in the exact time of the attack animation we will spawn his attack objects. Every different range enemy would have different attack object.*
+- *"Attack objects" basically like arrow for the archer or bullet for the who ever have pistol.*
+- *After we spawn the attack objects, player will check is he collided with any of this. If he did, then take the damage and pushed towards correct direction.*
+
+![ezgif-4-1ed7003c45](https://github.com/Hakansen4/Project_01/assets/62704352/5c2b0b91-da27-43d9-897f-b095e12dc081)
+
+# Currently Working On Parts
+## Platform Works
+
 ### Environment Combat
 - *In environment combat, player and enemy will receive damage. Sometimes both of them sometimes just one of them.*
 - *Environment combat will be like traps. Player going to try push enemies to the traps.*
