@@ -125,7 +125,8 @@ Just push them to deadly positions.*
 
 # Currently Working On Parts
 ## Platform Works
-
+### Platform Objects
+- *Platform objects are some of the objects will diversify to the platform experience and some of them will be like traps which going to damage enemies and player.*
 ### Environment Combat
 - *In environment combat, player and enemy will receive damage. Sometimes both of them sometimes just one of them.*
 - *Environment combat will be like traps. Player going to try push enemies to the traps.*
