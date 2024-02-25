@@ -336,14 +336,14 @@ MonoBehaviour:
   _animator: {fileID: 6180670383386150057}
   _rigidbody: {fileID: 1088994065462327161}
   _player: {fileID: 0}
-  _speed: 300
+  _speed: 200
   _chaseRange: 3
   _attackRange: 2
   _attackCooldown: 3
-  _attackObjectData: {fileID: 11400000, guid: 91698b2b9a576424986bec20af146836, type: 2}
   _leftBorder: {fileID: 8091292465547126362}
   _rightBorder: {fileID: 785859773672817084}
   _attackSpawnPosition: {fileID: 988798397657356230}
+  _attackObjectData: {fileID: 11400000, guid: 91698b2b9a576424986bec20af146836, type: 2}
 --- !u!114 &7879825668394920287
 MonoBehaviour:
   m_ObjectHideFlags: 0
