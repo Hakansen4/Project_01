@@ -21,6 +21,10 @@ public class EnemyMovement
         chase = new EnemyChase(transform, playerTransform, this);
         patrol = new EnemyPatrol(this,transform,leftBorder,rightBorder);
     }
+    public Vector2 CurrentVelocity()
+    {
+        return rb.velocity;
+    }
     public void PatrolMove()
     {
         Move(moveDirection);

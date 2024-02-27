@@ -128,6 +128,10 @@ public class EnemyController : MonoBehaviour
     {
         _rigidbody.AddForce(value);
     }
+    public void SetVelocity(Vector2 value)
+    {
+        _rigidbody.velocity = value;
+    }
 }
 public enum EnemyAnims
 {

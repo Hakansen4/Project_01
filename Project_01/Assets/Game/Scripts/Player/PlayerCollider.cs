@@ -110,4 +110,14 @@ public class PlayerCollider : MonoBehaviour, IHittable
 
         _controller.GotHit(damage);
     }
+
+    public void PushReverse(Vector3 objectPosition)
+    {
+        if (objectPosition.x > transform.position.x)
+            isHittedFromLeft = false;
+        else
+            isHittedFromLeft = true;
+        
+        _controller.GotHit(0);
+    }
 }

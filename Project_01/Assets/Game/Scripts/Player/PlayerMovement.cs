@@ -18,6 +18,10 @@ public class PlayerMovement
         this.jumpPower = jumpPower;
         this.pushBackPower = pushBackPower;
     }
+    public Vector2 CurrentVelocity()
+    {
+        return rigidbody.velocity;
+    }
     public void Run()
     {
         Move(runningSpeed);

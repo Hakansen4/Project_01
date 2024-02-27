@@ -10,4 +10,10 @@ public class EnemyCollider : MonoBehaviour, IHittable
         _controller.Push(direction * power);
         _controller.HittedState();
     }
+
+    public void PushReverse(Vector3 objectPosition)
+    {
+        _controller.SetVelocity(-1 * _controller.movement.CurrentVelocity());
+        _controller.HittedState();
+    }
 }
