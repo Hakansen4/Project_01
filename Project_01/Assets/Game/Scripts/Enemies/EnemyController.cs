@@ -124,10 +124,6 @@ public class EnemyController : MonoBehaviour
         if (_stateMachine.CurrentState != _hittedState)
             _stateMachine.TransitionTo(_hittedState);
     }
-    public void Push(Vector2 value)
-    {
-        _rigidbody.AddForce(value);
-    }
 }
 public enum EnemyAnims
 {

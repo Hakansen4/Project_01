@@ -29,4 +29,9 @@ public static class GlobalStrings
     public const string P_LEDGECLIMB = "LedgeClimb";
     public const string P_HITTED = "Hitted";
     #endregion
+
+    #region Environment
+    public const string GROUND = "Ground";
+    public const string WALL = "Wall";
+    #endregion
 }

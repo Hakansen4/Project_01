@@ -9,10 +9,10 @@ public class E_AttackObject : MonoBehaviour, IPoolable
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Rigidbody2D _rb;
     #endregion
+
     private float damage;
     private float deactivateTime;
     private float speed;
-
     private ObjectPool<E_AttackObject> pool;
     private int direction = 1;
     public void Activate()

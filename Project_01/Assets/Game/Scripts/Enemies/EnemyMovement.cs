@@ -21,6 +21,10 @@ public class EnemyMovement
         chase = new EnemyChase(transform, playerTransform, this);
         patrol = new EnemyPatrol(this,transform,leftBorder,rightBorder);
     }
+    public Vector2 CurrentVelocity()
+    {
+        return rb.velocity;
+    }
     public void PatrolMove()
     {
         Move(moveDirection);
@@ -46,6 +50,14 @@ public class EnemyMovement
     private void Move(AIMoveDirection moveDirection)
     {
         rb.velocity = new Vector2(((float)moveDirection) * speed * Time.fixedDeltaTime, rb.velocity.y);
+    }
+    public void Push(Vector2 value)
+    {
+        rb.AddForce(value);
+    }
+    public void SetVelocity(Vector2 value)
+    {
+        rb.velocity = value;
     }
 }
 public enum AIMoveDirection
