@@ -7,13 +7,13 @@ public class EnemyCollider : MonoBehaviour, IHittable
     [SerializeField] private EnemyController _controller;
     public void Hit(float power, Vector2 direction, float damage)
     {
-        _controller.Push(direction * power);
+        _controller.movement.Push(direction * power);
         _controller.HittedState();
     }
 
     public void PushReverse(Vector3 objectPosition)
     {
-        _controller.SetVelocity(-1 * _controller.movement.CurrentVelocity());
+        _controller.movement.SetVelocity(-1 * _controller.movement.CurrentVelocity());
         _controller.HittedState();
     }
 }

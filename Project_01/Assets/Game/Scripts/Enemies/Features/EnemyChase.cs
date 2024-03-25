@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 public class EnemyChase
 {
-    private EnemyMovement movement;
-    private Transform transform;
-    private Transform playerTransform;
-    private MonoBehaviour mono;
+    private readonly EnemyMovement movement;
+    private readonly Transform transform;
+    private readonly Transform playerTransform;
+    private readonly MonoBehaviour mono;
     public EnemyChase(Transform transform, Transform playerTransform,EnemyMovement movement) 
     {
         this.movement = movement;
@@ -21,11 +21,15 @@ public class EnemyChase
     {
         if (transform.position.x <= playerTransform.position.x && movement.moveDirection == AIMoveDirection.left)
         {
-            mono.StartCoroutine(movement.ChangeDirection(AIMoveDirection.right, 0));
+            ChangeMovementDirection(AIMoveDirection.right);
         }
         else if (movement.moveDirection == AIMoveDirection.right && transform.position.x >= playerTransform.position.x)
         {
-            mono.StartCoroutine(movement.ChangeDirection(AIMoveDirection.left, 0));
+            ChangeMovementDirection(AIMoveDirection.left);
         }
+    }
+    private void ChangeMovementDirection(AIMoveDirection direction)
+    {
+        mono.StartCoroutine(movement.ChangeDirection(direction, 0));
     }
 }

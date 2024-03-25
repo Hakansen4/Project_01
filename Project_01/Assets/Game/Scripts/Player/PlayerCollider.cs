@@ -5,9 +5,6 @@ using Ambrosia.EventBus;
 
 public class PlayerCollider : MonoBehaviour, IHittable
 {
-    private const string GROUND = "Ground";
-    private const string WALL = "Wall";
-
     [SerializeField] private PlayerController _controller;
 
     private bool grounded = false;
@@ -29,11 +26,11 @@ public class PlayerCollider : MonoBehaviour, IHittable
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(GROUND))
+        if (collision.gameObject.CompareTag(GlobalStrings.GROUND))
         {
             grounded = true;
         }
-        else if(collision.gameObject.CompareTag(WALL))
+        else if(collision.gameObject.CompareTag(GlobalStrings.WALL))
         {
             wallCollide = true;
         }
@@ -44,11 +41,11 @@ public class PlayerCollider : MonoBehaviour, IHittable
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(GROUND))
+        if (collision.gameObject.CompareTag(GlobalStrings.GROUND))
         {
             grounded = false;
         }
-        else if (collision.gameObject.CompareTag(WALL))
+        else if (collision.gameObject.CompareTag(GlobalStrings.WALL))
         {
             wallCollide = false;
         }

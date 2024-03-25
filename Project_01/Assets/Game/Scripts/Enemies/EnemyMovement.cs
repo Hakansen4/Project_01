@@ -51,6 +51,14 @@ public class EnemyMovement
     {
         rb.velocity = new Vector2(((float)moveDirection) * speed * Time.fixedDeltaTime, rb.velocity.y);
     }
+    public void Push(Vector2 value)
+    {
+        rb.AddForce(value);
+    }
+    public void SetVelocity(Vector2 value)
+    {
+        rb.velocity = value;
+    }
 }
 public enum AIMoveDirection
 {
